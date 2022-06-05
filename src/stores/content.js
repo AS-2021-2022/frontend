@@ -1,0 +1,3 @@
+import { writable } from 'svelte/store'
+
+export const sidebarItems = writable(["jeff", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh", "bruh"]);
