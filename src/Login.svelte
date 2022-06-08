@@ -14,8 +14,7 @@ async function login () {
 	const parameters = {'method' : 'GET'};
 
 
-	let result = await fetch(url , parameters);
-
+	let result = await (await fetch(url , parameters)).json();
 
 
     if(result["status"] == "accepted")
