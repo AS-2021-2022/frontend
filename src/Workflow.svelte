@@ -68,7 +68,7 @@
                 <img src="https://icons.getbootstrap.com/assets/icons/file-earmark-text-fill.svg" class="card-img-top">
                 <div class="card-body">
                     <h5 class="card-title">{file}</h5>
-                    <a href="#" class="btn btn-primary">Downloa</a>
+                    <a href="#" class="btn btn-primary">Download</a>
                 </div>
             </div>
             {/each}
