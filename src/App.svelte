@@ -185,7 +185,7 @@
 					
 				</div>
 			</div>
-			<div style="Text-align:right;width:calc(100% - 280px);float:right;height:90vh;">
+			<div class="overflow-auto" style="Text-align:right;width:calc(100% - 280px);float:right;height:90vh;">
 				{#if nav_active == "chat" && selected_user != 0}
 						<Chat userid = {selected_user}></Chat>
 				
