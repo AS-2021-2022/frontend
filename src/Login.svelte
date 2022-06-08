@@ -2,7 +2,7 @@
 
 	import {token , logged} from './stores/store.js';
 
-
+	let info = "";
 
 async function login () {
 
@@ -13,6 +13,7 @@ async function login () {
 		
 	const parameters = {'method' : 'GET'};
 
+	info = "trying ...";
 
 	let result = await (await fetch(url , parameters)).json();
 
@@ -25,7 +26,7 @@ async function login () {
 
 	if(result["status"] == "rejected")
 	{
-		console.log("unable to login");
+		info = "wrong credentials!";
 	}
 }
 
@@ -35,14 +36,19 @@ async function login () {
 <main>
     <div class = "title">NSN - Seguros</div>
     <div class="wrapper">
+		<div style="text-align:center">{info}</div>
         <div class="form-signin">       
-          <h2 class="form-signin-heading">Please login</h2>
+          <h2 class="form-signin-heading" style="text-align:center">Please login</h2>
           <input type="text" class="form-control" id="user" placeholder="Email Address" required="" autofocus="" />
           <input type="password" class="form-control" id="pass" placeholder="Password" required=""/>      
 
           <button class="btn btn-lg btn-primary btn-block" on:click={()=>{login();}}>Login</button>   
+		  
 		</div>
+		
       </div>
+
+	  
 </main>
 
 
