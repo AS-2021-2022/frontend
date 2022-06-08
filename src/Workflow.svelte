@@ -64,7 +64,7 @@
         <br><br><br><br><br><br><br>
         <div class="container-fluid overflow-auto-y">
             {#each apiResponse["files"] as file, index}
-            <div class="card" style="width: 10rem; display:inline-block">
+            <div class="card" style="width: 8rem; display:inline-block">
                 <img src="https://icons.getbootstrap.com/assets/icons/file-earmark-text-fill.svg" class="card-img-top">
                 <div class="card-body">
                     <h5 class="card-title">{file}</h5>
