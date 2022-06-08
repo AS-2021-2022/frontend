@@ -127,6 +127,8 @@
 
 
 <svelte:head>
+	<title>NSN</title>
+	<link rel='icon' type='image/png' href='https://i.pinimg.com/originals/83/ee/60/83ee6035704323a86b8ed5c3179734a6.png'>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 
