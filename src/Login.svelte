@@ -26,6 +26,7 @@ async function login () {
 	if(result["status"] == "rejected")
 	{
 		console.log("unable to login");
+		document.getElementById('failed').classList.add('show')
 	}
 }
 
@@ -40,7 +41,10 @@ async function login () {
           <input type="text" class="form-control" id="user" placeholder="Email Address" required="" autofocus="" />
           <input type="password" class="form-control" id="pass" placeholder="Password" required=""/>      
 
-          <button class="btn btn-lg btn-primary btn-block" on:click={()=>{login();}}>Login</button>   
+          <button class="btn btn-lg btn-primary btn-block mb-3" on:click={()=>{login();}}>Login</button>
+		  <div id="failed" class="alert alert-danger fade" role="alert">
+			Could not authenticate. Please try again.
+		</div>
 		</div>
       </div>
 </main>
