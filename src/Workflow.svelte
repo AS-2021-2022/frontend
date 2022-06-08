@@ -31,7 +31,8 @@
     function getWorkflow()
     {
         return {"status" : "accepted" , "name" : "workflow name" , "progress" : 1 ,
-        "steps" : [{"assignee_id" : "id" , "description" : "description text"} , {"assignee_id" : "id2" , "description" : "DESC2"}, {"assignee_id" : "id2" , "description" : "DESC2"}, {"assignee_id" : "id2" , "description" : "DESC2"}, {"assignee_id" : "id2" , "description" : "DESC2"}, {"assignee_id" : "id2" , "description" : "DESC2"}, {"assignee_id" : "id2" , "description" : "DESC2"}, ]};
+        "steps" : [{"assignee_id" : "id" , "description" : "description text"} , {"assignee_id" : "id2" , "description" : "DESC2"}, {"assignee_id" : "id2" , "description" : "DESC2"}, {"assignee_id" : "id2" , "description" : "DESC2"}, {"assignee_id" : "id2" , "description" : "DESC2"}, {"assignee_id" : "id2" , "description" : "DESC2"}, {"assignee_id" : "id2" , "description" : "DESC2"}, ],
+        "files" : ["file.txt", "file.txt", "file.txt", "file.txt", "file.txt", "file.txt", "file.txt", "file.txt", "file.txt", "file.txt", "file.txt", "file.txt", "file.txt", "file.txt", "file.txt", "file.txt", "file.txt", "file.txt", "file.txt", "file.txt", "file.txt", "file.txt"]};
     }
 
     let apiResponse = getWorkflow();
@@ -60,6 +61,18 @@
             
         {/each}
         </div>
+        <br><br><br><br><br><br><br>
+        <div class="container-fluid overflow-auto-y">
+            {#each apiResponse["files"] as file, index}
+            <div class="card" style="width: 10rem; display:inline-block">
+                <img src="https://icons.getbootstrap.com/assets/icons/file-earmark-text-fill.svg" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">{file}</h5>
+                    <a href="#" class="btn btn-primary">Downloa</a>
+                </div>
+            </div>
+            {/each}
+            </div>
 
 </main>
 
