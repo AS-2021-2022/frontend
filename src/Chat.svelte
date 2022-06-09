@@ -26,20 +26,18 @@ import { get } from "svelte/store";
 
         let awnser = await callAPI("contactMessages" , dict);
 
+        console.log(awnser);
+
         if(awnser["status"] == "accepted")
         {
 
-            let c = 0;
-            for(let i=depth+n-1;i>=depth;i--)
+            for(let i = 0;i < Object.keys(awnser["messages"]).length;i++)
             {
-                if(c < Object.keys(awnser["messages"]).length)
                 messages.push(awnser["messages"][i-depth]);
-                else{
-                    break;
-                }
-                c++;
             }
+            messages = messages;
         }
+        //console.log(messages);
     }
 
 
@@ -75,10 +73,18 @@ import { get } from "svelte/store";
     <div style = "overflow:auto; opacity:1.0;">
         {#each messages as message}
         <div class = "message">
-            {#if message.origin === 'you'}
+            {#if message["origin"] === 'you'}
+            
             <div class = "messageRight">{message.text}</div>
             {:else}
-            <div class = "messageLeft">{message.text}</div>
+
+                <div class = "messageLeft">
+                    
+                    {message.text}
+                    <div class = "messageOrigin">{message.origin}</div>
+
+                </div>
+            
             {/if}
         </div>
         {/each}
@@ -105,6 +111,7 @@ import { get } from "svelte/store";
     .messageLeft
     {
         width: fit-content;
+        background-color: #f1f1f1f1;
         max-width: 70%;
         margin-left: 50px;
         margin-top: 10px;
@@ -112,7 +119,6 @@ import { get } from "svelte/store";
         padding-left:20px;
         padding-right: 20px;
         border-radius: 20px;
-        background-color: #f1f1f1f1;
         font-size: 24px;
         float:left;
         height:fit-content;
@@ -120,6 +126,13 @@ import { get } from "svelte/store";
         text-align: left;
         color:black;
         overflow-wrap: anywhere;
+    }
+
+    .messageOrigin
+    {
+        border-top:2px solid rgb(232, 232, 232);
+        text-align:left;
+        font-size:18px;
     }
 
     .messageRight
