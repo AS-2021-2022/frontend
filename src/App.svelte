@@ -109,7 +109,15 @@
 					name: response["users"][i]["name"],
 					id:	response["users"][i]["id"],
 					"color": userColor
-				
+				});
+			}
+			for(let i=0;i<response["groups"].length;i++)
+			{
+				let group = response["groups"][i];
+				newOptions.push({
+					name: group["name"] ,
+					id:   group["id"] ,
+					"color": "white"
 				});
 			}
 		}
