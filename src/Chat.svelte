@@ -14,7 +14,6 @@ import { get } from "svelte/store";
         {
             messages = [];
             getMessages(0 , 2);
-            console.log("update");
             last_id = userid;
         }
         
@@ -23,13 +22,14 @@ import { get } from "svelte/store";
 
     async function getMessages(depth , n)
     {
-        var dict = {"token" : get(token), "type" : "getMessages" , "params" : {
-            "userid" : userid, "depth" : depth , "count" : count}};
+        var dict = {"token" : get(token), "targetID" : userid, "depth" : depth , "n" : n};
 
-        let awnser = callAPI(dict);
+        let awnser = await callAPI("contactMessages" , dict);
 
         if(awnser["status"] == "accepted")
         {
+
+            let c = 0;
             for(let i=depth+n-1;i>=depth;i--)
             {
                 if(c < Object.keys(awnser["messages"]).length)
@@ -37,6 +37,7 @@ import { get } from "svelte/store";
                 else{
                     break;
                 }
+                c++;
             }
         }
     }

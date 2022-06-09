@@ -70,8 +70,7 @@
 	}
 
 	async function getOptions(type) //send http request in order to get list of options (tasks, workflows , etc...)
-	{
-		console.log(get(token));	
+	{	
 		options = [];
 		switch(type)
 		{
@@ -109,7 +108,6 @@
 				});
 			}
 		}
-		console.log(newOptions);
 		return newOptions;
 	}
 	
