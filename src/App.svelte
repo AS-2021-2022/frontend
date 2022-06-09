@@ -84,7 +84,12 @@
 			break;
 
 			case 'workflows':
+			options = await callAPI("getWorkflows" , {"token" : get(token)});
+			console.log(options);
+
+			//remove this line in future (I hope!)
 			options = [{name: 'Workflow 1' , 'id' : 1 , color: 'red'} , {name: 'Workflow 2', 'id' : 2 , color:'green'}];
+			options = decodeOptions('workflows' , options); //not supported yet
 			break;
 		}
 	}
@@ -107,6 +112,11 @@
 				
 				});
 			}
+		}
+
+		if(type == 'workflows')
+		{
+			//...
 		}
 		return newOptions;
 	}
