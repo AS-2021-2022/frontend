@@ -7,6 +7,7 @@
 	import Workflow from "./Workflow.svelte";
 	import {logged , role , token} from "./stores/store.js";
 	import { get } from "svelte/store";
+	import {callAPI} from "./global.js";
 
 
 	
@@ -68,45 +69,15 @@
 		}
 	}
 
-	function decodeColor()
-	{
-		for(let i=0;i<options.length;i++)
-		{
-			switch(nav_active)
-			{
-				case 'chat':
-				if(options[i]["status"] == "offline")
-				{
-					options[i]["color"] = "grey";
-					delete options[i].status;
-				}
-				if(options[i]["status"] == "online")
-				{
-					options[i]["color"] = "green";
-					delete options[i].status;
-				}
-				if(options[i]["status"] == "busy")
-				{
-					options[i]["color"] = "red";
-					delete options[i].status;
-				}
-				break;
-			}
-		}
-
-		console.log(options);
-		options = options;
-	}
-
-	function getOptions(type) //send http request in order to get list of options (tasks, workflows , etc...)
+	async function getOptions(type) //send http request in order to get list of options (tasks, workflows , etc...)
 	{
 		console.log(get(token));	
 		options = [];
 		switch(type)
 		{
 			case 'chat':
-			options = [{"name": 'Jonh Doe' , "status": 'offline' , 'id' : 0xff} , {"name": 'Jane Doe',  "status":'online' , "id" : 0xf1} , {"name" : 'User3' , 'status' : "busy" , "id" : 0xf3}];
-			decodeColor();
+			options = await callAPI("contacts" , {"token" : get(token)});
+			options = decodeOptions('chat', options);
 			break;
 
 			case 'tasks':
@@ -119,7 +90,28 @@
 		}
 	}
 
-
+	function decodeOptions(type , response)
+	{
+		let newOptions = [];
+		if(type == 'chat')
+		{
+			for(let i=0;i<response["users"].length;i++)
+			{
+				let userColor = undefined;
+				let userStatus = response["users"][i]["status"];
+				if(userStatus == "ONLINE") userColor = "green";
+				if(userStatus == "OFFLINE") userColor = "grey";
+				newOptions.push({
+					name: response["users"][i]["name"],
+					id:	response["users"][i]["id"],
+					"color": userColor
+				
+				});
+			}
+		}
+		console.log(newOptions);
+		return newOptions;
+	}
 	
 	
 </script>
