@@ -1,21 +1,18 @@
 <script>
 
 	import {token , logged} from './stores/store.js';
+	import {callAPI} from "./global.js";
+
 
 
 async function login () {
 
     let user = document.getElementById("user").value;
     let pass = document.getElementById("pass").value;
-	
-	const url = "https://tranquil-brook-75958.herokuapp.com/login?" + "username=" + user + "&password="+pass;
 		
 	const parameters = {'method' : 'GET'};
 
-
-
-	let result = await (await fetch(url , parameters)).json();
-
+	let result = await callAPI("login" , {"username" : user , "password" : pass});
 
     if(result["status"] == "accepted")
     {
