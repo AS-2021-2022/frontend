@@ -64,7 +64,7 @@
         {/each}
         </div>
     </div>
-        <br><br><br><br><br>
+        <br><br><br>
         <div class="shadow-lg p-3 mb-5 bg-body rounded">
         <div class="container-fluid overflow-auto" style="height: 55vh">
             {#each apiResponse["files"] as file, index}
