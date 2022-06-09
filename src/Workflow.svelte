@@ -65,6 +65,7 @@
         </div>
     </div>
         <br><br><br><br><br>
+        <div class="shadow-lg p-3 mb-5 bg-body rounded">
         <div class="container-fluid overflow-auto" style="height: 55vh">
             {#each apiResponse["files"] as file, index}
             <div class="card mr-3 mb-3" style="width: justify-content; display:inline-block">
@@ -77,7 +78,7 @@
             </div>
             {/each}
             </div>
-
+        </div>
 </main>
 
 
