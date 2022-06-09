@@ -5,7 +5,7 @@
 	import Tasks from "./Tasks.svelte";
 	import Login from "./Login.svelte";
 	import Workflow from "./Workflow.svelte";
-	import {logged , role} from "./stores/store.js";
+	import {logged , role , token} from "./stores/store.js";
 	import { get } from "svelte/store";
 
 
@@ -100,7 +100,7 @@
 
 	function getOptions(type) //send http request in order to get list of options (tasks, workflows , etc...)
 	{
-		
+		console.log(get(token));	
 		options = [];
 		switch(type)
 		{

@@ -9,8 +9,6 @@ async function login () {
 
     let user = document.getElementById("user").value;
     let pass = document.getElementById("pass").value;
-		
-	const parameters = {'method' : 'GET'};
 
 	let result = await callAPI("login" , {"username" : user , "password" : pass});
 
