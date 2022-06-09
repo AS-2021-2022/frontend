@@ -1,9 +1,10 @@
 <script>
     import { afterUpdate } from "svelte";
+    import { get } from "svelte/store";
+    import {role} from "./stores/store.js";
     export let taskid;
     let state = "";
     let last_id = -1;
-    
 
     let parameters = undefined;
 
@@ -119,8 +120,10 @@
                 <option value="high">High</option>
               </select><div></div>
             <p></p>
+            {#if get(role) == "MANAGER"}
             <div class = "field" style="background-color:rgb(231, 231, 231);">Assignee: </div><input type="text" id="assignee" name="assignee" placeholder="email@nsn.pt">
             <p></p>
+            {/if}
             <div class = "field description" ><textarea id="w3review" name="w3review" rows="5" cols="25" placeholder="Description"></textarea></div>
             
             <p></p>
