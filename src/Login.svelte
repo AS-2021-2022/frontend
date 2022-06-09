@@ -1,7 +1,8 @@
 <script>
 
-	import {token , logged} from './stores/store.js';
+	import {token , logged , role} from './stores/store.js';
 	import {callAPI} from "./global.js";
+import { get } from 'svelte/store';
 
 
 
@@ -15,6 +16,12 @@ async function login () {
     if(result["status"] == "accepted")
     {
 	  token.set(result["token"]);
+	  
+	  //get user type
+	  let type = await callAPI("getUserType" , {"token" : get(token)});
+
+	  if(type["status"] == "accepted") role.set(type["type"]);
+
 	  logged.set(true);
     }
 

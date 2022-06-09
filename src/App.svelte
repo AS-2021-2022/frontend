@@ -175,8 +175,11 @@
 		<div>
 			<div style="width:280px;Text-align:left;float:left;background-color:gainsboro;">
 				<div class="d-flex flex-column flex-shrink-0 p-3" style="width: 280px;height:92.5vh;">
-					{#if get(role) == "manager" && nav_active == "tasks"}
+					{#if nav_active == "tasks"}
 						<div class = "sidebar-content" on:click={() => {selected_task = undefined}}>Create Task + </div>
+					{/if}
+					{#if get(role) == "MANAGER" && nav_active == "workflows"}
+					<div class = "sidebar-content" on:click={() => {selected_workflow = undefined}}>Create Workflow + </div>
 					{/if}
 					{#each options as option , index}
 					
