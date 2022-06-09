@@ -13,7 +13,7 @@ import { get } from "svelte/store";
         if(last_id != userid)
         {
             messages = [];
-            getMessages(0 , 2);
+            getMessages(0 , 30);
             last_id = userid;
         }
         
@@ -42,29 +42,27 @@ import { get } from "svelte/store";
         }
     }
 
-    
+
 
     async function sendMessage()
     {
         var h = document.getElementById("message-box");
-        
-        if(h.value != "")
+        let text = h.value;
+        if(text != "")
         {
-            var dict = {"token" : get(token) ,
-                    "type"  : "sendMessage" ,
-                    "params": {
-                        "userid" :   userid ,
-                        "message" : h.value
-                    }
-                };
+            
             h.value = "sending ...";
             
-            let awnser = callAPI(dict);
+           let awnser = await callAPI("sendMessage" , {"token" : get(token) , "targetID" : userid , "message" : text});
                    
             if(awnser["status"] == "accepted")
             {
-                messages = [...messages , {"origin" : "you" , "text" : h.value}];
-                h.value = ""; 
+                messages = [...messages , {"origin" : "you" , "text" : text}];
+                h.value = "";
+            }
+            if(awnser["status"] == "rejected")
+            {
+                console.log("message rejected");
             }
            
         }
