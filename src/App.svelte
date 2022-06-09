@@ -164,7 +164,7 @@
 						<a class="nav-link " href="#"> <i class="bi bi-envelope"></i>  xyz@empresa.pt</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" on:click={() => {logged.set(false);}}>Sign out <i class="bi bi-door-closed"></i></a>
+						<a class="nav-link" style="cursor:pointer" on:click={() => {logged.set(false);}}>Sign out <i class="bi bi-door-closed"></i></a>
 					</li>
 				</ul>
 			</div>
