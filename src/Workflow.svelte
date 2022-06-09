@@ -47,28 +47,29 @@
     <div class = "box">
 
         {#each apiResponse["steps"] as step , index}
-            <div style="display: inline-block">
-                {#if index < apiResponse["progress"]}
-                
-                <a tabindex="0" id="popover{index}" class="btn btn-lg btn-success" role="button" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-trigger="focus" title="Iteração {index}" on:click={() => showPopover(index)} data-bs-content="{step.description}">{index}</a>
-                {:else}
-                
-                
-                <a tabindex="0" id="popover{index}" class="btn btn-lg btn-danger" role="button" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-trigger="focus" title="Iteração {index}" on:click={() => showPopover(index)} data-bs-content="{step.description}">{index}</a>{/if}
-            </div>
-            <div style="display: inline-block">>>>>></div>
-
+        <div style="display: inline-block">
+            {#if index < apiResponse["progress"]}
+            
+            <a tabindex="0" id="popover{index}" style="border-radius: 50%;" class="btn btn-lg btn-success" role="button" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-trigger="focus" title="Assignee: {step.assignee}" on:click={() => showPopover(index)} data-bs-content="{step.description}">{index}</a>
+            {:else}
+            
+            
+            <a tabindex="0" id="popover{index}" style="border-radius: 50%;" class="btn btn-lg btn-danger" role="button" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-trigger="focus" title="Assignee: {step.assignee}" on:click={() => showPopover(index)} data-bs-content="{step.description}">{index}</a>{/if}
+        </div>
+        {#if index<(apiResponse["steps"].length-1)}
+        <div style="display: inline-block"><h1><i class="bi bi-arrow-right"></i></h1></div>
+        {/if}
             
         {/each}
         </div>
         <br><br><br><br><br><br><br>
         <div class="container-fluid overflow-auto-y">
             {#each apiResponse["files"] as file, index}
-            <div class="card" style="width: 8rem; display:inline-block">
+            <div class="card" style="width: 5rem; display:inline-block">
                 <img src="https://icons.getbootstrap.com/assets/icons/file-earmark-text-fill.svg" class="card-img-top">
                 <div class="card-body">
                     <h5 class="card-title">{file}</h5>
-                    <a href="#" class="btn btn-primary">Download</a>
+                    <a href="#" class="btn btn-primary"><i class="bi bi-download"></i></a>
                 </div>
             </div>
             {/each}
