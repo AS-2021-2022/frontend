@@ -4,7 +4,7 @@
     import { get } from "svelte/store";
     import {callAPI} from "./global.js";
     export let workflowid;
-
+    let cstep = 0;
     var last_id = -1;
     let state = "";
     const popovers = [];
@@ -34,6 +34,7 @@
         if(workflowid == undefined) state = "write";
         else{
             state = "read";
+            getWorkflow();
         }
     }
 
@@ -41,7 +42,7 @@
 
     async function createWorkflow()
     {
-        let dict = {"steps" : [] , "name" : ""};
+        let dict = {"token" : get(token) , "steps" : [] , "name" : ""};
         dict["name"] = document.getElementById("wname").value;
         for(let i=0;i<createWorkflowFields.length;i++)
         {
@@ -51,7 +52,7 @@
             dict["steps"].push({"id" : dest , "description" : desc});
 
         }
-
+        console.log(dict);
         let awnser = await callAPI("createWorkflow" , dict);
 
         if(awnser["status"] == "accepted")
@@ -75,14 +76,15 @@
 
     async function incrementWorkflow()
     {
+        cstep++;
+        document.getElementById("popover" + cstep).classList.remove("btn-danger");
+        document.getElementById("popover" + cstep).classList.add("btn-success");
         var dict = {"token" : get(token), "params": {"id": workflowid}};
-
+     
         let answer = await callAPI("incrementWorkflow" , dict);
 
-        console.log(answer)
+        
     }
-
-    getWorkflow();
 
 
 </script>
