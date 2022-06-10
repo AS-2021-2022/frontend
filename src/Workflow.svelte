@@ -60,6 +60,15 @@
         }
     }
 
+    async function incrementWorkflow()
+    {
+        var dict = {"token" : get(token), "params": {"id": workflowid}};
+
+        let answer = await callAPI("incrementWorkflow" , dict);
+
+        console.log(answer)
+    }
+
     getWorkflow();
 
 
@@ -68,7 +77,7 @@
 
 <main>
     {#if state == "read" && apiResponse != undefined}
-        <div class="container-fluid" style="height: 11.5vh;  overflow-x: auto; overflow-y: hidden">
+        <div class="container-fluid mt-5" style="height: 11.5vh;  overflow-x: auto; overflow-y: hidden">
 
         <div class = "box">
 
@@ -83,11 +92,15 @@
                 <a tabindex="0" id="popover{index}" style="border-radius: 50%;" class="btn btn-lg btn-danger" role="button" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-trigger="focus" title="Assignee: {step.assignee}" on:click={() => showPopover(index)} data-bs-content="{step.description}">{index}</a>{/if}
             </div>
             {#if index<(apiResponse["steps"].length-1)}
-            <div style="display: inline-block"><h1><i class="bi bi-arrow-right"></i></h1></div>
+            <div class="mr-3 ml-3" style="display: inline-block"><h1><i class="bi bi-arrow-right"></i></h1></div>
             {/if}
                 
             {/each}
             </div>
+        </div>
+        <div class="mt-3">
+            <input class="form-control form-control-sm" id="formFileSm" type="file">
+            <button type="button" class="btn btn-outline-primary mt-3" on:click={() => incrementWorkflow()}>Increment</button>
         </div>
             <br><br><br>
             <div class="shadow-lg p-3 mb-5 bg-body rounded">
@@ -156,7 +169,6 @@
         white-space:nowrap;
         text-align:center;
         height: fit-content;
-        background-color: aliceblue;
     }
 
     .step
