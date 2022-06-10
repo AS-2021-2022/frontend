@@ -2,7 +2,7 @@
     import { afterUpdate } from "svelte";
     import {token} from "./stores/store.js";
     import { get } from "svelte/store";
-    import {callAPI} from "./global.js";
+    import {callAPI , postAPI} from "./global.js";
     export let workflowid;
     let cstep = 0;
     var last_id = -1;
@@ -54,7 +54,7 @@
 
         }
         console.log(dict);
-        let awnser = await callAPI("createWorkflow" , dict);
+        let awnser = await postAPI("createWorkflow" , dict);
 
         if(awnser["status"] == "accepted")
         {
