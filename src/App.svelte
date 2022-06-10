@@ -135,12 +135,12 @@
 			{
 				let workflowColor = undefined;
 				let pending = response["workflows"][i]["pending"];
-				if(userStatus === false) workflowColor = "gray";
-				if(userStatus === true) workflowColor = "green";
+				if(pending === false) workflowColor = "gray";
+				if(pending === true) workflowColor = "green";
 				newOptions.push({
 					name: response["workflows"][i]["name"],
 					id:	response["workflows"][i]["id"],
-					"color": pending
+					"color": workflowColor
 				});
 			}
 		}
