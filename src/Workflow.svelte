@@ -19,6 +19,7 @@
             const exampleEl = document.getElementById('popover'+index);
             const popover = new bootstrap.Popover(exampleEl);
             popovers[index] = popover;
+        
             popover.show();
         }
     }
@@ -100,7 +101,7 @@
             <div style="display: inline-block">
                 {#if index < apiResponse["progress"]}
                 
-                <a tabindex="0" id="popover{index}" style="border-radius: 50%;" class="btn btn-lg btn-success" role="button" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-trigger="focus" title="Assignee: {step.assignee}" on:click={() => showPopover(index)} data-bs-content="{step.description}">{index}</a>
+                <a tabindex="0" id="popover{index}" style="border-radius: 50%;" class="btn btn-lg btn-success" role="button" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-trigger="focus" title="Assignee: {step.assignee_id}" on:click={() => showPopover(index)} data-bs-content="{step.description}">{index}</a>
                 {:else}
                 
                 
