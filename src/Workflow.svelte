@@ -4,7 +4,8 @@
     export let workflowid;
     var last_id = -1;
     let state = "";
-    const popovers = []
+    const popovers = [];
+    let createWorkflowFields = [{"assignee" : "" , "description" : ""}];
 
     function showPopover(index) {
         try {
@@ -85,13 +86,38 @@
             </div>
     {:else}
 
-            
+            <div style="display:flex;justify-content:center;margin-top:100px">
+                {#each createWorkflowFields as field}
+                    <div class = "createBox">
+
+                        <texarea class = "assignee">area </texarea>
+                        <p></p>
+                        <texarea class = "description">area</texarea>
+
+                    </div>
+                {/each}
+
+            </div>
 
     {/if}
 </main>
 
 
 <style>
+
+
+    .assignee
+    {
+        width:200px;
+        background-color: white;
+    }
+
+    .description
+    {
+        width:200px;
+        background-color: white;
+        min-height: 200px;
+    }
 
     .box
     {
@@ -130,6 +156,13 @@
     width: 50px;
     height: 25px;
     background: url("http:unsplash.it/400x300");
-}
+    }
+
+    .createBox
+    {
+        width:500px;
+        height:300px;
+        background-color: rgb(231, 231, 231);
+    }
 
 </style>
