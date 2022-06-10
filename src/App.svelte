@@ -2,6 +2,7 @@
 	import Chat from "./Chat.svelte";
 	import userid from "./Chat.svelte";
 	import taskid from "./Tasks.svelte";
+	import workflowid from "./Workflow.svelte";
 	import Tasks from "./Tasks.svelte";
 	import Login from "./Login.svelte";
 	import Workflow from "./Workflow.svelte";
@@ -84,12 +85,8 @@
 			break;
 
 			case 'workflows':
-			options = await callAPI("getWorkflows" , {"token" : get(token)});
-			console.log(options);
-
-			//remove this line in future (I hope!)
-			options = [{name: 'Workflow 1' , 'id' : 1 , color: 'red'} , {name: 'Workflow 2', 'id' : 2 , color:'green'}];
-			options = decodeOptions('workflows' , options); //not supported yet
+			options = await callAPI("getWorkflows" , {"token" : get(token)})
+			options = decodeOptions('workflows', options)
 			break;
 		}
 	}
@@ -124,7 +121,18 @@
 
 		if(type == 'workflows')
 		{
-			//...
+			for(let i=0;i<response["workflows"].length;i++)
+			{
+				let workflowColor = undefined;
+				let pending = response["workflows"][i]["pending"];
+				if(userStatus === false) workflowColor = "gray";
+				if(userStatus === true) workflowColor = "green";
+				newOptions.push({
+					name: response["workflows"][i]["name"],
+					id:	response["workflows"][i]["id"],
+					"color": pending
+				});
+			}
 		}
 		return newOptions;
 	}
