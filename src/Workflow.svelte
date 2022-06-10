@@ -10,6 +10,7 @@
     const popovers = [];
     let createWorkflowFields = [];
     let apiResponse = undefined;
+    let files
 
     function showPopover(index) {
         try {
@@ -77,14 +78,17 @@
 
     async function incrementWorkflow()
     {
-        cstep++;
-        document.getElementById("popover" + cstep).classList.remove("btn-danger");
-        document.getElementById("popover" + cstep).classList.add("btn-success");
-        var dict = {"token" : get(token), "params": {"id": workflowid}};
-     
+        if (!files) {
+            return
+        }
+        cstep++
+
+        var dict = {"token" : get(token), "params": {"id": workflowid, "fileName": files[0].name}};
+        console.log(files[0].name)
+        console.log(dict)
         let answer = await callAPI("incrementWorkflow" , dict);
 
-        
+        getWorkflow()
     }
 
 
@@ -115,8 +119,8 @@
             </div>
         </div>
         <div class="mt-3">
-            <input class="form-control form-control-sm" id="formFileSm" type="file">
-            <button type="button" class="btn btn-outline-primary mt-3" on:click={() => incrementWorkflow()}>Increment</button>
+            <input class="form-control form-control-sm" id="formFileSm" type="file" bind:files>
+            <button type="button" class="btn btn-outline-primary mt-3" on:click={() => incrementWorkflow()}>Advance Workflow</button>
         </div>
             <br><br><br>
             <div class="shadow-lg p-3 mb-5 bg-body rounded">
