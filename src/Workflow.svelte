@@ -39,6 +39,14 @@
 
     });
 
+    async function createWorkflow()
+    {
+        let dict = {};
+        
+
+        let awnser = await callAPI("createWorkflow" , dict)
+    }
+
     async function getWorkflow()
     {
         var dict = {"token" : get(token), "params": {"id": workflowid}};
@@ -98,14 +106,14 @@
             </div>
     {:else if state == "write"}
             <div style = "display:block;">
-            {#each createWorkflowFields as field}
+            {#each createWorkflowFields as field , index}
                 <div class = "create-box">
 
-                    <div class = "field" style="background-color:rgb(231, 231, 231);">Assignee: </div><input type="text" id="assignee" name="assignee" placeholder="email@nsn.pt">
+                    <div class = "field" style="background-color:rgb(231, 231, 231);">Assignee: </div><input type="text" id="a{index}" name="assignee" placeholder="email@nsn.pt">
 
                     <p></p>
                     <div class = "field" style="background-color:rgb(231, 231, 231);">Description: </div>
-                    <div class = "field"  style = "background-color:inherit"><textarea style="width:100%" placeholder="Description"></textarea></div>
+                    <div class = "field"  style = "background-color:inherit"><textarea id="d{index}" style="width:100%" placeholder="Description"></textarea></div>
 
                 </div>
             {/each}
@@ -114,6 +122,12 @@
                     createWorkflowFields = createWorkflowFields;
 
                 }}>new step</button>
+
+                <button on:click={() => {
+
+                    createWorkflow();
+
+                }}>Submit</button>
             </div>
 
 
