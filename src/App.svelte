@@ -20,6 +20,8 @@
 	
 	let options = [];
 
+	let optionLatestID = -1;
+
 	let selected_user	  = 0;
 	let selected_task 	  = 0;
 	let selected_workflow = 0;
@@ -29,6 +31,7 @@
 	let nav_active = "chat";
 	function updateSideBar(type)
 	{
+		optionLatestID = -1;
 		document.getElementById(nav_active).classList.remove("active");
 		document.getElementById(type).classList.add("active");
 		nav_active = type;
@@ -55,17 +58,23 @@
 
 	function selected(index)
 	{
-		
-		switch(nav_active)
+		if(optionLatestID != -1) document.getElementById(optionLatestID.toString()).style.backgroundColor = "inherit";
+		document.getElementById(index.toString()).style.backgroundColor = "grey";
+		console.log(index);
+		optionLatestID = index;
+		if(index != 1000)
 		{
-			case 'chat':
-			selected_user = options[index]["id"];
-			break;
-			case 'tasks':
-			selected_task = options[index]["id"];
-			break;
-			case 'workflows':
-			selected_workflow = options[index]["id"];
+			switch(nav_active)
+			{
+				case 'chat':
+				selected_user = options[index]["id"];
+				break;
+				case 'tasks':
+				selected_task = options[index]["id"];
+				break;
+				case 'workflows':
+				selected_workflow = options[index]["id"];
+			}
 		}
 	}
 
@@ -184,15 +193,15 @@
 			<div style="width:280px;Text-align:left;float:left;background-color:gainsboro;">
 				<div class="d-flex flex-column flex-shrink-0 p-3" style="width: 280px;height:92.5vh;">
 					{#if nav_active == "tasks"}
-						<div class = "sidebar-content" on:click={() => {selected_task = undefined}}>Create Task + </div>
+						<div id = "1000" class = "sidebar-content" on:click={() => {selected(1000);selected_task = undefined}}>Create Task + </div>
 					{/if}
 					{#if get(role) == "MANAGER" && nav_active == "workflows"}
-					<div class = "sidebar-content" on:click={() => {selected_workflow = undefined}}>Create Workflow + </div>
+					<div id = "1000" class = "sidebar-content" on:click={() => {selected(1000);selected_workflow = undefined}}>Create Workflow + </div>
 					{/if}
 					{#each options as option , index}
 					
 					<div on:click={() => {selected(index)}}>
-						<div class="sidebar-content">{option.name} <div class="circle" style="background-color:{option.color};"></div></div>
+						<div id="{index}"class="sidebar-content">{option.name} <div class="circle" style="background-color:{option.color};"></div></div>
 					</div>
 					{/each}
 					
