@@ -1,6 +1,6 @@
 <script>
 
-	import {token , logged , role} from './stores/store.js';
+	import {token , logged , role , email} from './stores/store.js';
 	import {callAPI} from "./global.js";
 import { get } from 'svelte/store';
 
@@ -20,9 +20,13 @@ async function login () {
 	  //get user type
 	  let type = await callAPI("getUserType" , {"token" : get(token)});
 
-	  if(type["status"] == "accepted") role.set(type["type"]);
+	  if(type["status"] == "accepted")
+	  {
+		email.set(type["email"]);
+		role.set(type["type"]);   
+		logged.set(true);
 
-	  logged.set(true);
+	  }
     }
 
 	if(result["status"] == "rejected")
@@ -36,9 +40,13 @@ async function login () {
 
 
 <main>
-    <div class = "title">NSN - Seguros</div>
+    
+	
     <div class="wrapper">
-        <div class="form-signin">       
+		
+        <div class="form-signin"> 
+			<div class = "title">NSN - Seguros</div>
+			<p>---------------------------------------------------------</p>      
           <h2 class="form-signin-heading" style="text-align:center">Please login</h2>
           <input type="text" class="form-control" id="user" placeholder="Email Address" required="" autofocus="" />
           <input type="password" class="form-control" id="pass" placeholder="Password" required=""/>      
@@ -60,20 +68,24 @@ async function login () {
    
    .title
    {
-    font-size:30px;
+    font-size:33px;
     text-align:center;
     margin-top:50px;
+	
    }
  .wrapper {
 	 margin-top: 80px;
 	 margin-bottom: 80px;
 }
  .form-signin {
+	box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+	 border-radius:10px;
 	 max-width: 380px;
 	 padding: 15px 35px 45px;
 	 margin: 0 auto;
-	 background-color: #fff;
+	 background-color: rgb(244, 244, 244);
 	 border: 1px solid rgba(0, 0, 0, 0.1);
+	 
 }
  .form-signin .form-signin-heading, .form-signin .checkbox {
 	 margin-bottom: 30px;

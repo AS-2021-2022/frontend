@@ -6,7 +6,7 @@
 	import Tasks from "./Tasks.svelte";
 	import Login from "./Login.svelte";
 	import Workflow from "./Workflow.svelte";
-	import {logged , role , token} from "./stores/store.js";
+	import {logged , role , token , email} from "./stores/store.js";
 	import { get } from "svelte/store";
 	import {callAPI} from "./global.js";
 
@@ -188,7 +188,7 @@
 				</ul>
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item">
-						<a class="nav-link " href="#"> <i class="bi bi-envelope"></i>  xyz@empresa.pt</a>
+						<a class="nav-link " href="#"> <i class="bi bi-envelope"></i>{get(email)}</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" style="cursor:pointer" on:click={() => {logged.set(false);}}>Sign out <i class="bi bi-door-closed"></i></a>
