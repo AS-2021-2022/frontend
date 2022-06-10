@@ -2,7 +2,9 @@
 
 	import {token , logged , role , email} from './stores/store.js';
 	import {callAPI} from "./global.js";
-import { get } from 'svelte/store';
+import { get} from 'svelte/store';
+
+
 
 
 
@@ -22,10 +24,9 @@ async function login () {
 
 	  if(type["status"] == "accepted")
 	  {
-		email.set(type["email"]);
 		role.set(type["type"]);   
 		logged.set(true);
-
+		email.set(result["email"]);
 	  }
     }
 

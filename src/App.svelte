@@ -18,6 +18,9 @@
 	logged.subscribe(value => {
 		_logged = value;
 	});
+
+
+
 	
 	let options = [];
 
@@ -32,7 +35,6 @@
 	let nav_active = "chat";
 	function updateSideBar(type)
 	{
-		
 		document.getElementById(nav_active).classList.remove("active");
 		document.getElementById(type).classList.add("active");
 		nav_active = type;
