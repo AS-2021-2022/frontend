@@ -1,12 +1,15 @@
 <script>
     import { afterUpdate } from "svelte";
-
+    import {token} from "./stores/store.js";
+    import { get } from "svelte/store";
+    import {callAPI} from "./global.js";
     export let workflowid;
+
     var last_id = -1;
     let state = "";
     const popovers = [];
-    let createWorkflowFields = [{"assignee" : "" , "description" : ""}];
-    let apiResponse;
+    let createWorkflowFields = [{"assignee" : "" , "description" : ""} , {}];
+    let apiResponse = undefined;
 
     function showPopover(index) {
         try {
@@ -43,16 +46,18 @@
         console.log(answer)
 
         if (answer["status"] == "accepted") {
-            apiResponse = answer
+            apiResponse = answer;
         }
     }
+
+    getWorkflow();
 
 
 </script>
 
 
 <main>
-    {#if state == "read"}
+    {#if state == "read" && apiResponse != undefined}
         <div class="container-fluid" style="height: 11.5vh;  overflow-x: auto; overflow-y: hidden">
 
         <div class = "box">
@@ -89,19 +94,16 @@
                 {/each}
                 </div>
             </div>
-    {:else}
-
-            <div style="display:flex;justify-content:center;margin-top:100px">
-                {#each createWorkflowFields as field}
-                    <div class = "createBox">
-
-                        <texarea class = "assignee">area </texarea>
+    {:else if state == "write"}
+            <div style = "text-align:center;">
+            {#each createWorkflowFields as field}
+                <div class="create-box">
+                        <div>t1</div>
                         <p></p>
-                        <texarea class = "description">area</texarea>
-
+                        <div>t2</div>
+                        
                     </div>
-                {/each}
-
+            {/each}
             </div>
 
     {/if}
@@ -113,12 +115,20 @@
 
     .assignee
     {
+        display: block;
+        text-align:left;
+        float:left;
+        margin-left:30px;
         width:200px;
         background-color: white;
     }
 
-    .description
+    .text
     {
+        display: block;
+        text-align:left;
+        float:left;
+        margin-left:30px;
         width:200px;
         background-color: white;
         min-height: 200px;
@@ -163,11 +173,12 @@
     background: url("http:unsplash.it/400x300");
     }
 
-    .createBox
+    .create-box
     {
+        background-color: red;
+        display:block;
         width:500px;
-        height:300px;
-        background-color: rgb(231, 231, 231);
+        left:50%;
     }
 
 </style>

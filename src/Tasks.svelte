@@ -2,6 +2,7 @@
     import { afterUpdate } from "svelte";
     import { get } from "svelte/store";
     import {role} from "./stores/store.js";
+    import {callAPI} from "./global.js";
     export let taskid;
     let state = "";
     let last_id = -1;

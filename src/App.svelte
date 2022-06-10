@@ -23,9 +23,9 @@
 
 	let optionLatestID = -1;
 
-	let selected_user	  = 0;
-	let selected_task 	  = 0;
-	let selected_workflow = 0;
+	let selected_user	  = -1;
+	let selected_task 	  = -1;
+	let selected_workflow = -1;
 
 
 
@@ -41,21 +41,22 @@
 		switch(type)
 		{
 			case 'chat':
-			selected_user = 0;
+			selected_user = -1;
 			break;
 
 			case 'tasks':
-			selected_task = 0;
+			selected_task = -1;
 			break;
 
 			case 'workflows':
-			selected_workflow = 0;
+			selected_workflow = -1;
 			break;
 
 			case 'files':
 			break;
 		}
-		document.getElementById(optionLatestID.toString()).style.backgroundColor = "inherit";
+		if(optionLatestID != -1)
+			document.getElementById(optionLatestID.toString()).style.backgroundColor = "inherit";
 		optionLatestID = -1;
 	}
 
@@ -217,18 +218,18 @@
 				</div>
 			</div>
 			<div class="overflow-auto" style="Text-align:right;width:calc(100% - 280px);float:right;height:90vh;">
-				{#if nav_active == "chat" && selected_user != 0}
+				{#if nav_active == "chat" && selected_user != -1}
 						<Chat userid = {selected_user}></Chat>
 				
 				
 
-				{:else if nav_active == "tasks" && selected_task != 0}
+				{:else if nav_active == "tasks" && selected_task != -1}
 
 						<Tasks taskid = {selected_task}></Tasks>
 
 				
 
-				{:else if nav_active == "workflows" && selected_workflow != 0}
+				{:else if nav_active == "workflows" && selected_workflow != -1}
 						<Workflow workflowid = {selected_workflow}></Workflow>
 
 				{/if}
