@@ -41,10 +41,23 @@
 
     async function createWorkflow()
     {
-        let dict = {};
-        
+        let dict = {"steps" : [] , "name" : ""};
+        dict["name"] = document.getElementById("wname").value;
+        for(let i=0;i<createWorkflowFields.length;i++)
+        {
+            let dest = document.getElementById("a"+i.toString()).value;
+            let desc = document.getElementById("d"+i.toString()).value;
 
-        let awnser = await callAPI("createWorkflow" , dict)
+            dict["steps"].push({"id" : dest , "description" : desc});
+
+        }
+
+        let awnser = await callAPI("createWorkflow" , dict);
+
+        if(awnser["status"] == "accepted")
+        {
+            console.log("worked");
+        }
     }
 
     async function getWorkflow()
@@ -119,7 +132,9 @@
             </div>
     {:else if state == "write"}
             <div style = "display:block;">
+                <div class = "field" style="background-color:rgb(231, 231, 231);">Workflow name: </div><input type="text" id="wname" name="assignee" placeholder="name">
             {#each createWorkflowFields as field , index}
+            
                 <div class = "create-box">
 
                     <div class = "field" style="background-color:rgb(231, 231, 231);">Assignee: </div><input type="text" id="a{index}" name="assignee" placeholder="email@nsn.pt">
