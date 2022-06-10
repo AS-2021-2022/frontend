@@ -8,7 +8,7 @@
     var last_id = -1;
     let state = "";
     const popovers = [];
-    let createWorkflowFields = [{"assignee" : "" , "description" : ""} , {}];
+    let createWorkflowFields = [];
     let apiResponse = undefined;
 
     function showPopover(index) {
@@ -22,6 +22,8 @@
             popover.show();
         }
     }
+
+    
 
     
     afterUpdate(() => {
@@ -95,16 +97,25 @@
                 </div>
             </div>
     {:else if state == "write"}
-            <div style = "text-align:center;">
+            <div style = "display:block;">
             {#each createWorkflowFields as field}
-                <div class="create-box">
-                        <div>t1</div>
-                        <p></p>
-                        <div>t2</div>
-                        
-                    </div>
+                <div class = "create-box">
+
+                    <div class = "field" style="background-color:rgb(231, 231, 231);">Assignee: </div><input type="text" id="assignee" name="assignee" placeholder="email@nsn.pt">
+
+                    <p></p>
+                    <div class = "field" style="background-color:rgb(231, 231, 231);">Description: </div>
+                    <div class = "field"  style = "background-color:inherit"><textarea style="width:100%" placeholder="Description"></textarea></div>
+
+                </div>
             {/each}
+                <button on:click={() => {
+                    createWorkflowFields.push({"assignee" : "" , "description" : ""});
+                    createWorkflowFields = createWorkflowFields;
+
+                }}>new step</button>
             </div>
+
 
     {/if}
 </main>
@@ -112,26 +123,18 @@
 
 <style>
 
-
-    .assignee
+    .field
     {
-        display: block;
-        text-align:left;
-        float:left;
-        margin-left:30px;
-        width:200px;
+        
         background-color: white;
-    }
-
-    .text
-    {
-        display: block;
-        text-align:left;
-        float:left;
-        margin-left:30px;
-        width:200px;
-        background-color: white;
-        min-height: 200px;
+        width:fit-content + 20px;
+        display:inline-block;
+        height:fit-content + 10px;
+        padding-left:30px;
+        padding-right:30px;
+        margin-top:30px;
+        min-height:30px;
+        font-size:24px;
     }
 
     .box
@@ -175,10 +178,15 @@
 
     .create-box
     {
-        background-color: red;
-        display:block;
-        width:500px;
-        left:50%;
+        width : 40%;
+        margin: 0 auto;
+        height: fit-content;
+        padding-bottom:50px;
+        margin-top:100px;
+        background-color:rgb(231, 231, 231);
+        min-height:300px;
+        text-align:center;
+        min-width: fit-content;
     }
 
 </style>

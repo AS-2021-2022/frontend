@@ -125,7 +125,7 @@
             <div class = "field" style="background-color:rgb(231, 231, 231);">Assignee: </div><input type="text" id="assignee" name="assignee" placeholder="email@nsn.pt">
             <p></p>
             {/if}
-            <div class = "field description" ><textarea id="w3review" name="w3review" rows="5" cols="25" placeholder="Description"></textarea></div>
+            <div class = "field description" style="background-color:inherit"><textarea id="w3review" name="w3review" rows="5" cols="25" placeholder="Description"></textarea></div>
             
             <p></p>
             
