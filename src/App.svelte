@@ -32,7 +32,7 @@
 	let nav_active = "chat";
 	function updateSideBar(type)
 	{
-		optionLatestID = -1;
+		
 		document.getElementById(nav_active).classList.remove("active");
 		document.getElementById(type).classList.add("active");
 		nav_active = type;
@@ -55,13 +55,14 @@
 			case 'files':
 			break;
 		}
+		document.getElementById(optionLatestID.toString()).style.backgroundColor = "inherit";
+		optionLatestID = -1;
 	}
 
 	function selected(index)
 	{
 		if(optionLatestID != -1) document.getElementById(optionLatestID.toString()).style.backgroundColor = "inherit";
 		document.getElementById(index.toString()).style.backgroundColor = "grey";
-		console.log(index);
 		optionLatestID = index;
 		if(index != 1000)
 		{
@@ -269,7 +270,7 @@
 
 	}
 	.sidebar-content:hover{
-		background-color: rgb(171, 171, 171);
+		background-color: rgb(187, 187, 187);
 		cursor:pointer;
 	}
 
