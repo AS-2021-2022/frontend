@@ -46,7 +46,7 @@ async function login () {
 		
         <div class="form-signin"> 
 			<div class = "title">NSN - Seguros</div>
-			<p>---------------------------------------------------------</p>      
+			<p>------------------------------------------------</p>      
           <h2 class="form-signin-heading" style="text-align:center">Please login</h2>
           <input type="text" class="form-control" id="user" placeholder="Email Address" required="" autofocus="" />
           <input type="password" class="form-control" id="pass" placeholder="Password" required=""/>      
