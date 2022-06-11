@@ -1,6 +1,6 @@
 <script>
 import { afterUpdate } from "svelte";
-import {token} from "./stores/store.js";
+import {token , email} from "./stores/store.js";
 import {callAPI} from "./global.js";
 import { get } from "svelte/store";
 
@@ -73,7 +73,7 @@ import { get } from "svelte/store";
     <div style = "overflow:auto; opacity:1.0;">
         {#each messages as message}
         <div class = "message">
-            {#if message["origin"] === 'you'}
+            {#if message["origin"] === get(email)}
             
             <div class = "messageRight">{message.text}</div>
             {:else}
