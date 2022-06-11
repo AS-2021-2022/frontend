@@ -78,18 +78,31 @@
 
     async function incrementWorkflow()
     {
-        if (!files) {
-            return
-        }
         cstep++
+        if (document.getElementById("popover" + (cstep)).classList.contains("btn-outline-danger")) {
+            document.getElementById("popover" + cstep).classList.remove("btn-outline-danger");
+            document.getElementById("popover" + cstep).classList.add("btn-outline-success");
+        }
+        if (document.getElementById("popover" + (cstep)).classList.contains("btn-danger")) {
+            document.getElementById("popover" + cstep).classList.remove("btn-danger");
+            document.getElementById("popover" + cstep).classList.add("btn-success");
+        }
+        if (document.getElementById("popover" + (cstep-1)).classList.contains("btn-outline-success")) {
+            document.getElementById("popover" + (cstep-1)).classList.remove("btn-outline-success");
+            document.getElementById("popover" + (cstep-1)).classList.add("btn-outline-info");
+        }
+        if (document.getElementById("popover" + (cstep-1)).classList.contains("btn-success")) {
+            document.getElementById("popover" + (cstep-1)).classList.remove("btn-success");
+            document.getElementById("popover" + (cstep-1)).classList.add("btn-info");
+        }
 
         var dict = {"token" : get(token), "params": {"id": workflowid, "fileName": files[0].name}};
         console.log(files[0].name)
         console.log(dict)
         let answer = await callAPI("incrementWorkflow" , dict);
-
-        getWorkflow()
     }
+
+    
 
 </script>
 
