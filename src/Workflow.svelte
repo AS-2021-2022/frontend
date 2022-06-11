@@ -106,8 +106,8 @@
 
 </script>
 
+<main style="text-align:initial">
 
-<main>
     {#if state == "read" && apiResponse != undefined}
         <div class="container-fluid mt-5" style="height: 11.5vh;  overflow-x: auto; overflow-y: hidden">
 
@@ -162,8 +162,11 @@
                 </div>
             </div>
     {:else if state == "write"}
+        
             <div style = "display:block;">
-                <div class = "field" style="background-color:rgb(231, 231, 231);">Workflow name: </div><input type="text" id="wname" name="assignee" placeholder="name">
+                <div class = "name-box" style="text-align:center">
+                    <div class = "field" style="background-color:rgb(231, 231, 231);width:fit-content;height:fit-content;text-align:center">Workflow name</div><p></p><input type="text" id="wname" name="assignee" placeholder="name">
+                </div>
             {#each createWorkflowFields as field , index}
             
                 <div class = "create-box">
@@ -176,22 +179,27 @@
 
                 </div>
             {/each}
+
+
+            <div class = "name-box" style="text-align:center">
                 <button on:click={() => {
                     createWorkflowFields.push({"assignee" : "" , "description" : ""});
                     createWorkflowFields = createWorkflowFields;
 
-                }}>new step</button>
+                }} >new step</button>
 
-                <button on:click={() => {
+                <button  on:click={() => {
 
                     createWorkflow();
 
                 }}>Submit</button>
             </div>
+        </div>
 
 
     {/if}
-</main>
+
+    </main>
 
 
 <style>
@@ -259,6 +267,18 @@
         min-height:300px;
         text-align:center;
         min-width: fit-content;
+    }
+
+    .name-box
+    {
+        background-color:rgb(231, 231, 231);
+        width:40%;
+        margin: 0 auto;
+        padding-bottom:50px;
+        margin-top:100px;
+        height: fit-content;
+        border-radius:20px;
+
     }
 
 </style>
