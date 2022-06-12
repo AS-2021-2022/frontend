@@ -100,7 +100,7 @@
                 <p></p>
                 
                 
-                <button class = "concludeButton" on:click={() => {
+                <button class = "btn btn-lg btn-primary mb-3" on:click={() => {
 
                     console.log("remove task");
 
@@ -132,7 +132,7 @@
             <p></p>
             
             
-            <button class = "concludeButton" on:click={() => {
+            <button class = "btn btn-lg btn-primary mb-3" on:click={() => {
 
                 console.log("remove task");
 
@@ -152,6 +152,7 @@
 
     .taskBox
     {
+        box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
         width : 40%;
         margin: 0 auto;
         height: fit-content;

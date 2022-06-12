@@ -165,30 +165,30 @@
         
             <div style = "display:block;">
                 <div class = "name-box" style="text-align:center">
-                    <div class = "field" style="background-color:rgb(231, 231, 231);width:fit-content;height:fit-content;text-align:center">Workflow name</div><p></p><input type="text" id="wname" name="assignee" placeholder="name">
+                    <div class = "field" style="width:fit-content;height:fit-content;text-align:center">Workflow name</div><p></p><input type="text" id="wname" name="assignee" placeholder="name">
                 </div>
             {#each createWorkflowFields as field , index}
             
                 <div class = "create-box">
-
+                    <div class = "field" style="text-align:center">Step {index+1}</div><p></p>
                     <div class = "field" style="background-color:rgb(231, 231, 231);">Assignee: </div><input type="text" id="a{index}" name="assignee" placeholder="email@nsn.pt">
 
                     <p></p>
-                    <div class = "field" style="background-color:rgb(231, 231, 231);">Description: </div>
+                    <div class = "field" style="background-color:rgb(231, 231, 231);">Description </div><p></p>
                     <div class = "field"  style = "background-color:inherit"><textarea id="d{index}" style="width:100%" placeholder="Description"></textarea></div>
 
                 </div>
             {/each}
 
 
-            <div class = "name-box" style="text-align:center">
-                <button on:click={() => {
+            <div class = "button-box" style="text-align:center; margin-top:5px;border-radius:0px">
+                <button class = "btn btn-lg btn-primary mb-3" style = "width:fit-content" on:click={() => {
                     createWorkflowFields.push({"assignee" : "" , "description" : ""});
                     createWorkflowFields = createWorkflowFields;
 
                 }} >new step</button>
 
-                <button  on:click={() => {
+                <button  class = "btn btn-lg btn-primary mb-3" style="width:fit-content"on:click={() => {
 
                     createWorkflow();
 
@@ -256,8 +256,21 @@
     background: url("http:unsplash.it/400x300");
     }
 
+    .name-box
+    {
+        box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+        background-color:rgb(231, 231, 231);
+        width:40%;
+        margin: 0 auto;
+        padding-bottom:50px;
+        margin-top:100px;
+        height: fit-content;
+        border-radius:20px;
+    }
+
     .create-box
     {
+        box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
         width : 40%;
         margin: 0 auto;
         height: fit-content;
@@ -269,8 +282,9 @@
         min-width: fit-content;
     }
 
-    .name-box
+    .button-box
     {
+        box-shadow: rgb(91, 109, 128) 0px 20px 30px -10px;
         background-color:rgb(231, 231, 231);
         width:40%;
         margin: 0 auto;

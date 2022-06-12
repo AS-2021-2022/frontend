@@ -46,8 +46,8 @@ async function login () {
     <div class="wrapper">
 		
         <div class="form-signin"> 
-			<div class = "title">NSN - Seguros</div>
-			<p>------------------------------------------------</p>      
+			<div class = "title" style="border-bottom:3px solid white">NSN - Seguros</div>
+			  
           <h2 class="form-signin-heading" style="text-align:center">Please login</h2>
           <input type="text" class="form-control" id="user" placeholder="Email Address" required="" autofocus="" />
           <input type="password" class="form-control" id="pass" placeholder="Password" required=""/>      
@@ -79,7 +79,7 @@ async function login () {
 	 margin-bottom: 80px;
 }
  .form-signin {
-	box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+	box-shadow: rgb(91, 109, 128) 0px 20px 30px -10px;
 	 border-radius:10px;
 	 max-width: 380px;
 	 padding: 15px 35px 45px;
