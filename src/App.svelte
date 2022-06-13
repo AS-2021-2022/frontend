@@ -6,6 +6,7 @@
 	import Tasks from "./Tasks.svelte";
 	import Login from "./Login.svelte";
 	import Workflow from "./Workflow.svelte";
+	import Files from "./Files.svelte";
 	import {logged , role , token , email} from "./stores/store.js";
 	import { get } from "svelte/store";
 	import {callAPI} from "./global.js";
@@ -202,7 +203,7 @@
 						<a class="nav-link " href="#">Workflows<i class="bi bi-arrow-right"></i></a>
 					</li>
 					<li on:click={() => updateSideBar('files')} class="nav-item" id="files">
-						<a class="nav-link " href="#">files<i class="bi bi-arrow-right"></i></a>
+						<a class="nav-link " href="#">Files<i class="bi bi-arrow-right"></i></a>
 					</li>
 				</ul>
 				<ul class="navbar-nav ml-auto">
@@ -251,6 +252,10 @@
 				{:else if nav_active == "workflows" && selected_workflow != -1}
 						<Workflow workflowid = {selected_workflow}></Workflow>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4d3fc9546c00224264a2c6ecb91136be5717ebc9
 				{:else if nav_active == "files"}
 						<Files></Files>
 
