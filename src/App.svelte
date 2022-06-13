@@ -3,6 +3,7 @@
 	import userid from "./Chat.svelte";
 	import taskid from "./Tasks.svelte";
 	import workflowid from "./Workflow.svelte";
+	import Home from "./Home.svelte"
 	import Tasks from "./Tasks.svelte";
 	import Login from "./Login.svelte";
 	import Workflow from "./Workflow.svelte";
@@ -33,7 +34,7 @@
 
 
 
-	let nav_active = "chat";
+	let nav_active = "home";
 	function updateSideBar(type)
 	{
 		document.getElementById(nav_active).classList.remove("active");
@@ -56,6 +57,9 @@
 			break;
 
 			case 'files':
+			break;
+
+			case 'home':
 			break;
 		}
 		if(optionLatestID != -1)
@@ -185,13 +189,12 @@
 	<Login></Login>
 	{:else}
 		<nav class="navbar navbar-expand-md navbar-dark bg-primary active">
-			<a href="/" class="navbar-brand"><i class="bi bi-house"></i></a>
+			<a href="#" id="home" class="navbar-brand" on:click={() => updateSideBar('home')}><i class="bi bi-house"></i></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar6">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="navbar-collapse collapse justify-content-stretch" id="navbar6">
 				<ul class="navbar-nav">
-					
 					<li on:click={() => updateSideBar('chat')} class="nav-item" id="chat">
 						<a class="nav-link" href="#">Chat<i class="bi bi-arrow-right"></i></a>
 					</li>
@@ -240,6 +243,9 @@
 				{#if nav_active == "chat" && selected_user != -1}
 						<Chat userid = {selected_user}></Chat>
 				
+				{:else if nav_active == "home"}
+
+					<Home></Home>
 				
 
 				{:else if nav_active == "tasks" && selected_task != -1}
