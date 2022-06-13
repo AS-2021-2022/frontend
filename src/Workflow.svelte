@@ -54,12 +54,14 @@
             dict["steps"].push({"id" : dest , "description" : desc});
 
         }
-        console.log(dict);
         let awnser = await postAPI("createWorkflow" , dict);
 
         if(awnser["status"] == "accepted")
         {
-            console.log("worked");
+            createWorkflowFields = [];
+        }
+        else{
+            console.log("Rejected");
         }
     }
 
