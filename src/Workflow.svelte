@@ -118,13 +118,13 @@
 
             {#each apiResponse["steps"] as step , index}
             <div style="display: inline-block">
-                {#if index+1 < apiResponse["progress"]+1}
+                {#if index < apiResponse["progress"]}
                     {#if step.id==get(email)}
                     <a tabindex="0" id="popover{index}" style="border-radius: 50%;" class="btn btn-lg btn-info" role="button" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-trigger="focus" title="Assignee: {step.id}" on:click={() => showPopover(index)} data-bs-content="{step.description}">{index}</a>
                     {:else}
                     <a tabindex="0" id="popover{index}" style="border-radius: 50%;" class="btn btn-lg btn-outline-info" role="button" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-trigger="focus" title="Assignee: {step.id}" on:click={() => showPopover(index)} data-bs-content="{step.description}">{index}</a>
                     {/if}
-                {:else if index+1 == apiResponse["progress"]+1}
+                {:else if index == apiResponse["progress"]}
                     {#if step.id==get(email)}
                     <a tabindex="0" id="popover{index}" style="border-radius: 50%;" class="btn btn-lg btn-success" role="button" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-trigger="focus" title="Assignee: {step.id}" on:click={() => showPopover(index)} data-bs-content="{step.description}">{index}</a>
                     {:else}
