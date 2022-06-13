@@ -68,7 +68,7 @@
 
     async function getWorkflow()
     {
-        var dict = {"token" : get(token), "params": {"id": workflowid}};
+        var dict = {"token" : get(token), "id": workflowid};
 
         let answer = await callAPI("getWorkflow" , dict);
 
