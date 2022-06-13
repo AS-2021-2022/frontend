@@ -10,7 +10,6 @@
 	import {logged , role , token , email} from "./stores/store.js";
 	import { get } from "svelte/store";
 	import {callAPI} from "./global.js";
-	import Files from "./Files.svelte";
 
 
 	
@@ -252,10 +251,6 @@
 				{:else if nav_active == "workflows" && selected_workflow != -1}
 						<Workflow workflowid = {selected_workflow}></Workflow>
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 4d3fc9546c00224264a2c6ecb91136be5717ebc9
 				{:else if nav_active == "files"}
 						<Files></Files>
 
