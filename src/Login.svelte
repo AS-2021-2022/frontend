@@ -56,15 +56,17 @@ async function login () {
           <input type="text" class="form-control" id="user" placeholder="Email Address" required="" autofocus="" />
           <input type="password" class="form-control" id="pass" placeholder="Password" required=""/>      
 
-          <button class="btn btn-lg btn-primary btn-block mb-3" on:click={()=>{login();}}>Login</button>
+			<button class="btn btn-lg btn-primary btn-block mb-3" on:click={()=>{login();}}>
+				<div class="d-flex align-items-center">
+					Login
+					<div id="loading" class="spinner-border ml-auto" role="status" style="display:none">
+						<span class="visually-hidden"></span>
+					</div>
+				</div>
+			</button>
 		  <div id="failed" class="alert alert-danger fade" role="alert">
 			Could not authenticate. Please try again.
 		</div>
-		<div class="d-flex justify-content-center">
-			<div id="loading" class="spinner-border" role="status" style="display:none">
-			  <span class="visually-hidden"></span>
-			</div>
-		  </div>
 		</div>
 		
       </div>
