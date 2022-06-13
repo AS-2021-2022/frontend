@@ -201,7 +201,7 @@
 						<a class="nav-link " href="#">Workflows<i class="bi bi-arrow-right"></i></a>
 					</li>
 					<li on:click={() => updateSideBar('files')} class="nav-item" id="files">
-						<a class="nav-link " href="#">files<i class="bi bi-arrow-right"></i></a>
+						<a class="nav-link " href="#">Files<i class="bi bi-arrow-right"></i></a>
 					</li>
 				</ul>
 				<ul class="navbar-nav ml-auto">
