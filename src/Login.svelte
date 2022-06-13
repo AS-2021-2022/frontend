@@ -10,6 +10,8 @@ import { get} from 'svelte/store';
 
 async function login () {
 
+	document.getElementById("loading").style.display = "block"
+
     let user = document.getElementById("user").value;
     let pass = document.getElementById("pass").value;
 
@@ -35,6 +37,8 @@ async function login () {
 		console.log("unable to login");
 		document.getElementById('failed').classList.add('show')
 	}
+
+	document.getElementById("loading").style.display = "none"
 }
 
 </script>
@@ -56,6 +60,11 @@ async function login () {
 		  <div id="failed" class="alert alert-danger fade" role="alert">
 			Could not authenticate. Please try again.
 		</div>
+		<div class="d-flex justify-content-center">
+			<div id="loading" class="spinner-border" role="status" style="display:none">
+			  <span class="visually-hidden"></span>
+			</div>
+		  </div>
 		</div>
 		
       </div>
