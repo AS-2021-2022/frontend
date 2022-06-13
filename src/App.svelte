@@ -94,6 +94,7 @@
 			break;
 
 			case 'tasks':
+			//options = await callAPI("getTasksList" , {"token" : get(token)});
 			options = [{name: 'Tarefa 1' , color: 'red' , 'id' : 1} , {name: 'Tarefa 2',  color:'green' , 'id' : 2}];
 			break;
 
@@ -144,6 +145,21 @@
 					name: response["workflows"][i]["name"],
 					id:	response["workflows"][i]["id"],
 					"color": workflowColor
+				});
+			}
+		}
+
+		if(type == 'tasks')
+		{
+			for(let i=0;i<response["tasks"].length;i++)
+			{
+				let taskColor = "green";
+				let task = response["tasks"][i];
+				if(task["time_left"] < 120) "red";
+				newOptions.push({
+					name : task["name"],
+					id   : task["id"] ,
+					color: taskColor
 				});
 			}
 		}

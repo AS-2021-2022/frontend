@@ -1,8 +1,8 @@
 <script>
     import { afterUpdate } from "svelte";
     import { get } from "svelte/store";
-    import {role} from "./stores/store.js";
-    import {callAPI} from "./global.js";
+    import {role , token} from "./stores/store.js";
+    import {callAPI, postAPI} from "./global.js";
     export let taskid;
     let state = "";
     let last_id = -1;
@@ -55,12 +55,10 @@
         //send task id in request
         var dict = {"token" : "abc" ,
                     "type"   : "getTask",
-                    "params" : {
-                        "id" : taskid
-                    }
+                    "id" : id
                 };
 
-        let awnser = callAPI(dict);
+        let awnser = await callAPI(dict);
 
         if(awnser["status"] === "accepted")
         {
@@ -70,6 +68,40 @@
             return undefined;
         }
         
+    }
+
+    async function concludeTask()
+    {
+        var dict = {"token" : get(token) , "type" : "concludeTask" , "id" : taskid};
+
+        let response = await callAPI("concludeTask" , dict);
+
+        if(response["status"] == "accepted")
+        {
+            getTask(taskid);
+        }
+    }
+
+    async function sendTask()
+    {
+        let assignee;
+        if(document.getElementById("assignee") != undefined) assignee = document.getElementById("assignee").value;
+
+        let dict = {
+            "token" : get(token),
+            "name" : document.getElementById("name").value ,
+            "start" : document.getElementById("startDate").value ,
+            "end" : document.getElementById("endDate").value ,
+            "priority" : document.getElementById("priority").value ,
+
+        }
+
+        let awnser = await postAPI("assignTask" , dict);
+
+        if(awnser["status"] == "accepted")
+        {
+            
+        }
     }
 
 </script>
@@ -102,7 +134,7 @@
                 
                 <button class = "btn btn-lg btn-primary mb-3" on:click={() => {
 
-                    console.log("remove task");
+                    concludeTask();
 
                 }}>Conclude task!</button>
                 
@@ -134,7 +166,7 @@
             
             <button class = "btn btn-lg btn-primary mb-3" on:click={() => {
 
-                console.log("remove task");
+                sendTask();
 
             }}>Submit task!</button>
 

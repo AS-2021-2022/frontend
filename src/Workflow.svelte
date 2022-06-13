@@ -59,6 +59,7 @@
         if(awnser["status"] == "accepted")
         {
             createWorkflowFields = [];
+            getWorkflow();
         }
         else{
             console.log("Rejected");
