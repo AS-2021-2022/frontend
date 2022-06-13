@@ -6,7 +6,7 @@
       event.preventDefault();
   
       const dataArray = new FormData();
-      dataArray.append("superHeroName", postVar);
+      dataArray.append("name", postVar);
       dataArray.append("uploadFile", fileVar);
   
       fetch("https://tranquil-brook-75958.herokuapp.com/upload", {
