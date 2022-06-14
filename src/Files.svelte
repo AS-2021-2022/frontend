@@ -3,41 +3,16 @@
     let fileVar;
     let files = ["jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", ]
   
-    function submitForm(){
-      event.preventDefault();
-  
-      const dataArray = new FormData();
-      dataArray.append("name", postVar);
-      dataArray.append("uploadFile", fileVar);
-  
-      fetch("https://tranquil-brook-75958.herokuapp.com/upload", {
-        method: "POST",
-        headers: [["Content-Type", "multipart/form-data"]],
-        body: dataArray
-      })
-        .then(response => {
-          // Successfully uploaded
-        })
-        .catch(error => {
-          // Upload failed
-        });
-    }
+    
+    
   </script>
   
   <div>
-    <form on:submit={submitForm}>
-      <input
-        type="text"
-        bind:value={postVar}
-        placeholder={"Superhero Name"}
-      />
-      <br />
-      <input 
-        type="file" 
-        bind:files={fileVar} />
-      <br />
-      <input type="submit" />
-    </form>
+    <form enctype="multipart/form-data" action='https://tranquil-brook-75958.herokuapp.com/upload' method="POST">
+        <input type="hidden"/>
+        Choose a file to upload: <input name="file" type="file" /><br />
+        <input type="submit" />
+        </form>
     <div class="shadow-lg p-3 mb-5 mt-5 bg-body rounded">
         <div class="container-fluid overflow-auto" style="height: 55vh">
         {#each files as file, index}
