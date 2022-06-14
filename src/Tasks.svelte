@@ -21,29 +21,6 @@
                 parameters = getTask(taskid);
             }
             
-           
-            /*if(taskid == 1)
-            {
-            parameters = {
-                "status" : "accepted",
-                "start" : "6/6 - 15:00",
-                "end" : "7/6 - 14:00",
-                "priority" : "Alta" ,
-                "description" : "Descrição detalhada da tarefa aqui"
-                }
-            }
-            if(taskid == 2)
-            {
-                parameters = {
-                    "status" : "accepted",
-                    "start" : "5/6 - 15:00",
-                    "end" : "6/6 - 14:00",
-                    "priority" : "Baixa" ,
-                    "description" : "Descrição detalhada da tarefa aqui"
-                }
-            }
-            last_id = taskid;
-            */
         }
     });
 
