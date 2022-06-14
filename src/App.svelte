@@ -16,6 +16,7 @@
 	
 
 	let _logged;
+	let show_sidebar = false;
 
 	logged.subscribe(value => {
 		_logged = value;
@@ -45,21 +46,26 @@
 		switch(type)
 		{
 			case 'chat':
+			show_sidebar = true;
 			selected_user = -1;
 			break;
 
 			case 'tasks':
+			show_sidebar = true;
 			selected_task = -1;
 			break;
 
 			case 'workflows':
+			show_sidebar = true;
 			selected_workflow = -1;
 			break;
 
 			case 'files':
+			show_sidebar = false;
 			break;
 
 			case 'home':
+				show_sidebar = false;
 			break;
 		}
 		if(optionLatestID != -1)
@@ -222,24 +228,27 @@
 		
 
 		<div>
-			<div style="width:280px;Text-align:left;float:left;background-color:gainsboro;">
-				<div class="d-flex flex-column flex-shrink-0 p-3" style="width: 280px;height:92.5vh;">
-					{#if nav_active == "tasks"}
-						<div id = "1000" class = "sidebar-content" on:click={() => {selected(1000);selected_task = undefined}}>Create Task + </div>
-					{/if}
-					{#if get(role) == "MANAGER" && nav_active == "workflows"}
-					<div id = "1000" class = "sidebar-content" on:click={() => {selected(1000);selected_workflow = undefined}}>Create Workflow + </div>
-					{/if}
-					{#each options as option , index}
-					
-					<div on:click={() => {selected(index)}}>
-						<div id="{index}"class="sidebar-content">{option.name} <div class="circle" style="background-color:{option.color};"></div></div>
+			{#if show_sidebar == true}
+				<div style="width:280px;Text-align:left;float:left;background-color:gainsboro;">
+					<div class="d-flex flex-column flex-shrink-0 p-3" style="width: 280px;height:92.5vh;">
+						{#if nav_active == "tasks"}
+							<div id = "1000" class = "sidebar-content" on:click={() => {selected(1000);selected_task = undefined}}>Create Task + </div>
+						{/if}
+						{#if get(role) == "MANAGER" && nav_active == "workflows"}
+						<div id = "1000" class = "sidebar-content" on:click={() => {selected(1000);selected_workflow = undefined}}>Create Workflow + </div>
+						{/if}
+						{#each options as option , index}
+						
+						<div on:click={() => {selected(index)}}>
+							<div id="{index}"class="sidebar-content">{option.name} <div class="circle" style="background-color:{option.color};"></div></div>
+						</div>
+						{/each}
+						
 					</div>
-					{/each}
-					
 				</div>
-			</div>
-			<div class="overflow-auto" style="Text-align:right;width:calc(100% - 280px);float:right;height:90vh;">
+			{/if}
+			
+			<div class="overflow-auto" style="width:calc(100% - {show_sidebar * 280}px);float:right;height:90vh;">
 				{#if nav_active == "chat" && selected_user != -1}
 						<Chat userid = {selected_user}></Chat>
 				
