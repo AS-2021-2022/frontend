@@ -248,12 +248,13 @@
 				</div>
 			{/if}
 			
-			<div class="overflow-auto" style="width:calc(100% - {show_sidebar * 280}px);float:right;height:90vh;">
+			<div class="overflow-auto" style="text-align:center;width:calc(100% - {show_sidebar * 280}px);float:right;height:90vh;">
 				{#if nav_active == "chat" && selected_user != -1}
 						<Chat userid = {selected_user}></Chat>
 				
 				{:else if nav_active == "home"}
-
+				
+				
 					<Home></Home>
 				
 
