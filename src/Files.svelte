@@ -21,20 +21,7 @@
   </script>
   
   <div>
-    <!--Upload Form-->
-    <input id="fileupload" type="file" name="fileupload" /> 
-    <button id="upload-button" on:click={()=>{uploadFile()}}> Upload </button>
-
-
-
-<!--Upload Form>
-    <form enctype="multipart/form-data" action='https://tranquil-brook-75958.herokuapp.com/upload' method="POST">
-        <input type="hidden"/>
-        Choose a file to upload: <input name="file" type="file" /><br />
-        <input type="submit" />
-        </form>
-        <Upload Form-->
-
+    
 
 
 
@@ -53,4 +40,21 @@
         {/each}
         </div>
     </div>
+
+    <!--Upload Form-->
+    <div class = "uploadBox">
+        <input id="fileupload" type="file" name="fileupload" /> 
+        <button class = "btn btn-lg btn-primary mb-3"id="upload-button" on:click={()=>{uploadFile()}}> Upload </button>
+    </div>
 </div>
+
+<style>
+
+    .uploadBox
+    {
+        
+        
+    }
+
+
+</style>
