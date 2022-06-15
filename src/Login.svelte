@@ -2,9 +2,9 @@
 
 	import {token , logged , role , email} from './stores/store.js';
 	import {callAPI} from "./global.js";
-import { get} from 'svelte/store';
+	import { get} from 'svelte/store';
 
-
+	
 
 
 

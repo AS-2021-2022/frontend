@@ -70,14 +70,13 @@
             "start" : document.getElementById("startDate").value ,
             "end" : document.getElementById("endDate").value ,
             "priority" : document.getElementById("priority").value ,
-
         }
 
         let awnser = await postAPI("assignTask" , dict);
 
         if(awnser["status"] == "accepted")
         {
-            
+            console.log("task successfully uploaded");
         }
     }
 
