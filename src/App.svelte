@@ -92,6 +92,14 @@
 				selected_workflow = options[index]["id"];
 			}
 		}
+		else{
+			switch(nav_active)
+			{
+				case 'tasks':
+				selected_task = undefined;
+				break;
+			}
+		}
 	}
 
 	async function getOptions(type) //send http request in order to get list of options (tasks, workflows , etc...)
@@ -106,7 +114,7 @@
 
 			case 'tasks':
 			options = await callAPI("getTasksList" , {"token" : get(token)});
-			
+			options = decodeOptions('tasks' , options);
 			break;
 
 			case 'workflows':
