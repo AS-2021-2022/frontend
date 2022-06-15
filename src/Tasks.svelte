@@ -3,22 +3,22 @@
     import { get } from "svelte/store";
     import {role , token} from "./stores/store.js";
     import {callAPI, postAPI} from "./global.js";
-    export let taskid;
+    export let taskid = undefined;
     let state = "";
     let last_id = -1;
 
     let parameters = undefined;
 
-    afterUpdate(() => {
-
-        
+    afterUpdate  ( async () => {
 
         if(last_id != taskid)
         {
+            last_id = taskid;
             if(taskid == undefined) state = "write";
             else{
                 state = "read";
-                parameters = getTask(taskid);
+                parameters = await getTask(taskid);
+
             }
             
         }
@@ -30,12 +30,11 @@
     {
         
         //send task id in request
-        var dict = {"token" : "abc" ,
-                    "type"   : "getTask",
+        var dict = {"token" : get(token) ,
                     "id" : id
                 };
 
-        let awnser = await callAPI(dict);
+        let awnser = await callAPI("getTask" , dict);
 
         if(awnser["status"] === "accepted")
         {
@@ -85,7 +84,9 @@
 
 <main>
 
+
     <div class = "taskBox">
+
         {#if state === "read"}
 
             {#if parameters === undefined}
