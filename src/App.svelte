@@ -105,13 +105,13 @@
 			break;
 
 			case 'tasks':
-			//options = await callAPI("getTasksList" , {"token" : get(token)});
-			options = [{name: 'Tarefa 1' , color: 'red' , 'id' : 1} , {name: 'Tarefa 2',  color:'green' , 'id' : 2}];
+			options = await callAPI("getTasksList" , {"token" : get(token)});
+			
 			break;
 
 			case 'workflows':
-			options = await callAPI("getWorkflows" , {"token" : get(token)})
-			options = decodeOptions('workflows', options)
+			options = await callAPI("getWorkflows" , {"token" : get(token)});
+			options = decodeOptions('workflows', options);
 			break;
 		}
 	}
