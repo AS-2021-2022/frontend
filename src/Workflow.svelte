@@ -98,9 +98,8 @@
             document.getElementById("popover" + (cstep-1)).classList.add("btn-info");
         }
 
-        var dict = {"token" : get(token), "params": {"id": workflowid, "fileName": files[0].name}};
-        console.log(files[0].name)
-        console.log(dict)
+        var dict = {"token" : get(token), "name": files[0].name  , "id": workflowid};
+       
         let answer = await callAPI("incrementWorkflow" , dict);
     }
 
