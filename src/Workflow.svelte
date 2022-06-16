@@ -28,7 +28,7 @@
     
 
     
-    afterUpdate(() => {
+    afterUpdate(async () => {
     
     if(last_id != workflowid)
     {
@@ -36,7 +36,7 @@
         if(workflowid == undefined) state = "write";
         else{
             state = "read";
-            getWorkflow();
+            await getWorkflow();
         }
     }
 
@@ -68,11 +68,10 @@
 
     async function getWorkflow()
     {
+        console.log(workflowid);
         var dict = {"token" : get(token), "id": workflowid};
 
         let answer = await callAPI("getWorkflow" , dict);
-
-        console.log(answer)
 
         if (answer["status"] == "accepted") {
             apiResponse = answer;
@@ -99,9 +98,8 @@
             document.getElementById("popover" + (cstep-1)).classList.add("btn-info");
         }
 
-        var dict = {"token" : get(token), "params": {"id": workflowid, "fileName": files[0].name}};
-        console.log(files[0].name)
-        console.log(dict)
+        var dict = {"token" : get(token), "name": files[0].name  , "id": workflowid};
+       
         let answer = await callAPI("incrementWorkflow" , dict);
     }
 
