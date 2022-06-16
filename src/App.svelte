@@ -163,7 +163,7 @@
 				if(pending === true) workflowColor = "green";
 				newOptions.push({
 					name: response["workflows"][i]["name"],
-					id:	response["workflows"][i]["id"],
+					id:	response["workflows"][i]["workflow"],
 					"color": workflowColor
 				});
 			}
