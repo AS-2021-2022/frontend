@@ -17,6 +17,23 @@
   }
 
 
+  function downloadFile(name) {
+     var req = new XMLHttpRequest();
+     req.open("GET", "https://tranquil-brook-75958.herokuapp.com/download?filename=" + name, true);
+     req.responseType = "blob";
+     req.onload = function (event) {
+         var blob = req.response;
+         var fileName = req.getResponseHeader("name") //if you have the fileName header available
+         var link=document.createElement('a');
+         link.href=window.URL.createObjectURL(blob);
+         link.download=name;
+         link.click();
+     };
+
+     req.send();
+ }
+
+
     
   </script>
   
@@ -34,7 +51,7 @@
                 <div class="card-body">
                     {file}
                     <p></p>
-                    <a href = "https://tranquil-brook-75958.herokuapp.com/download?name={file}" download class="btn btn-primary"><i class="bi bi-download"></i></a>
+                    <div on:click={() => {downloadFile(file)}} class="btn btn-primary"><i class="bi bi-download"></i></div>
                 </div>
             </div>    
         {/each}

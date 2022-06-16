@@ -60,7 +60,7 @@
 
     async function sendTask()
     {
-        let assignee;
+        let assignee = "me";
         if(document.getElementById("assignee") != undefined) assignee = document.getElementById("assignee").value;
 
         let dict = {
@@ -69,7 +69,10 @@
             "start" : document.getElementById("startDate").value ,
             "end" : document.getElementById("endDate").value ,
             "priority" : document.getElementById("priority").value ,
-        }
+            "description" : document.getElementById("w3review").value,
+            "assignee_id" : assignee
+        };
+
 
         let awnser = await postAPI("assignTask" , dict);
 
