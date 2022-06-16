@@ -90,6 +90,7 @@
 				break;
 				case 'workflows':
 				selected_workflow = options[index]["id"];
+				break;
 			}
 		}
 		else{
