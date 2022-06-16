@@ -1,39 +1,65 @@
 <script>
 
-    import jQuery from "jquery";
+    import {callAPI} from "./global.js";
+    import { afterUpdate } from "svelte";
+    import { get } from "svelte/store";
+    import {token} from "./stores/store.js";
 
     let postVar;
     let fileVar;
-    let files = ["Main.java", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", "jeff", ]
+    let init_flag = false;
+    let files = [];
     
 
+
     async function uploadFile() {
-  let formData = new FormData(); 
-  formData.append("file", fileupload.files[0]);
-  await fetch('https://tranquil-brook-75958.herokuapp.com/upload', {
-    method: "POST", 
-    body: formData
-  }); 
-  }
+    let formData = new FormData();
+    formData.append("file", fileupload.files[0]);
+    await fetch('https://tranquil-brook-75958.herokuapp.com/upload', {
+        method: "POST", 
+        body: formData
+    }); 
+    }
+
+    afterUpdate(async() => {
+
+        //get files list
+        if(init_flag == false)
+        {
+            let awnser = await callAPI("getFilesList" , {"token" : get(token)});
+            if(awnser["status"] == "accepted")
+            {
+                files = awnser["files"];
+                console.log(files);
+            }
+            init_flag = true;
+        }
+    });
 
 
-  function downloadFile(name) {
+  function downloadFile(file) {
      var req = new XMLHttpRequest();
-     req.open("GET", "https://tranquil-brook-75958.herokuapp.com/download?filename=" + name, true);
+     req.open("GET", "https://tranquil-brook-75958.herokuapp.com/download?" + "token=" + get(token) + "&id=" + file["id"], true);
      req.responseType = "blob";
      req.onload = function (event) {
          var blob = req.response;
-         var fileName = req.getResponseHeader("name") //if you have the fileName header available
          var link=document.createElement('a');
          link.href=window.URL.createObjectURL(blob);
-         link.download=name;
+         link.download=file["name"];
          link.click();
      };
 
      req.send();
  }
 
-
+    async function removeFile(file)
+    {
+        let awnser = await callAPI("removeFile" , {"token" : get(token) , "id" : file["id"]});
+        if(awnser["status"] == "accepted")
+        {
+            files = files.filter((val) => {return val["id"] != file["id"]});
+        }
+    }
     
   </script>
   
@@ -49,9 +75,10 @@
             <div class="card mr-3 mb-3" style="width: justify-content; display:inline-block;">
                 <img src="https://icons.getbootstrap.com/assets/icons/file-earmark-text-fill.svg" class="card-img-top">
                 <div class="card-body">
-                    {file}
+                    {file["name"]}
                     <p></p>
                     <div on:click={() => {downloadFile(file)}} class="btn btn-primary"><i class="bi bi-download"></i></div>
+                    <div on:click={() => {removeFile(file)}} class="btn btn-danger"><i class="bi bi-trash"></i></div>
                 </div>
             </div>    
         {/each}
