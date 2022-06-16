@@ -73,7 +73,7 @@ import { get } from "svelte/store";
     <div style = "overflow:auto; opacity:1.0;">
         {#each messages as message}
         <div class = "message">
-            {#if message["origin"] === get(email)}
+            {#if message["origin"] === get(email) || message["origin"] == "you"}
             
             <div class = "messageRight">{message.text}</div>
             {:else}
