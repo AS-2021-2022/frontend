@@ -13,12 +13,30 @@
 
 
     async function uploadFile() {
-    let formData = new FormData();
-    formData.append("file", fileupload.files[0]);
-    await fetch('https://tranquil-brook-75958.herokuapp.com/upload', {
-        method: "POST", 
-        body: formData
-    }); 
+        console.log("wtf1");
+        let formData = new FormData();
+        formData.append("token" , get(token));
+        formData.append("file", fileupload.files[0]);
+        let awnser = await fetch('https://tranquil-brook-75958.herokuapp.com/upload', {
+            method: "POST", 
+            body: formData
+        }); 
+        awnser = await awnser.json();
+        if(awnser["status"] == "accepted")
+        {
+            alert("File uploaded successfully!");
+            getFilesList();
+        }
+    }
+
+    async function getFilesList()
+    {
+        let awnser = await callAPI("getFilesList" , {"token" : get(token)});
+        if(awnser["status"] == "accepted")
+        {
+            files = awnser["files"];
+            console.log(files);
+        }
     }
 
     afterUpdate(async() => {
@@ -26,18 +44,14 @@
         //get files list
         if(init_flag == false)
         {
-            let awnser = await callAPI("getFilesList" , {"token" : get(token)});
-            if(awnser["status"] == "accepted")
-            {
-                files = awnser["files"];
-                console.log(files);
-            }
+            await getFilesList();
+            
             init_flag = true;
         }
     });
 
 
-  function downloadFile(file) {
+  async function downloadFile(file) {
      var req = new XMLHttpRequest();
      req.open("GET", "https://tranquil-brook-75958.herokuapp.com/download?" + "token=" + get(token) + "&id=" + file["id"], true);
      req.responseType = "blob";
@@ -77,8 +91,8 @@
                 <div class="card-body">
                     {file["name"]}
                     <p></p>
-                    <div on:click={() => {downloadFile(file)}} class="btn btn-primary"><i class="bi bi-download"></i></div>
-                    <div on:click={() => {removeFile(file)}} class="btn btn-danger"><i class="bi bi-trash"></i></div>
+                    <div on:click={async () => {await downloadFile(file)}} class="btn btn-primary"><i class="bi bi-download"></i></div>
+                    <div on:click={async () => {await removeFile(file)}} class="btn btn-danger"><i class="bi bi-trash"></i></div>
                 </div>
             </div>    
         {/each}
@@ -88,7 +102,7 @@
     <!--Upload Form-->
     <div class = "uploadBox">
         <input id="fileupload" type="file" name="fileupload" /> 
-        <button class = "btn btn-lg btn-primary mb-3"id="upload-button" on:click={()=>{uploadFile()}}> Upload </button>
+        <button class = "btn btn-lg btn-primary mb-3"id="upload-button" on:click={async ()=>{await uploadFile()}}> Upload </button>
     </div>
 </div>
 
