@@ -13,10 +13,10 @@
 
 
     async function uploadFile() {
-        console.log("wtf1");
+
         let formData = new FormData();
-        formData.append("token" , get(token));
         formData.append("file", fileupload.files[0]);
+        formData.append("token" , get(token));
         let awnser = await fetch('https://tranquil-brook-75958.herokuapp.com/upload', {
             method: "POST", 
             body: formData
@@ -34,7 +34,10 @@
         let awnser = await callAPI("getFilesList" , {"token" : get(token)});
         if(awnser["status"] == "accepted")
         {
-            files = awnser["files"];
+            if(awnser["files"] != undefined) files = awnser["files"];
+            else{
+                files = [];
+            }
             console.log(files);
         }
     }
@@ -53,7 +56,7 @@
 
   async function downloadFile(file) {
      var req = new XMLHttpRequest();
-     req.open("GET", "https://tranquil-brook-75958.herokuapp.com/download?" + "token=" + get(token) + "&id=" + file["id"], true);
+     req.open("GET", "https://tranquil-brook-75958.herokuapp.com/download?" + "token=" + get(token) + "&fileID=" + file["id"], true);
      req.responseType = "blob";
      req.onload = function (event) {
          var blob = req.response;
