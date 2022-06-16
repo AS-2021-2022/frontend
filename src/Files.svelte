@@ -71,9 +71,10 @@
 
     async function removeFile(file)
     {
-        let awnser = await callAPI("removeFile" , {"token" : get(token) , "id" : file["id"]});
+        let awnser = await callAPI("delete" , {"token" : get(token) , "fileID" : file["id"]});
         if(awnser["status"] == "accepted")
         {
+            alert("File sucessfully eliminated!");
             files = files.filter((val) => {return val["id"] != file["id"]});
         }
     }
