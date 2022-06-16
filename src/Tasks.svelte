@@ -64,17 +64,17 @@
         if(document.getElementById("assignee") != undefined) assignee = document.getElementById("assignee").value;
 
         let dict = {
-            "token" : get(token),
-            "name" : document.getElementById("name").value ,
-            "start" : document.getElementById("startDate").value ,
-            "end" : document.getElementById("endDate").value ,
-            "priority" : document.getElementById("priority").value ,
-            "description" : document.getElementById("w3review").value,
-            "assignee_id" : assignee
+            "token" : String(get(token)),
+            "name" : String(document.getElementById("name").value) ,
+            "start" : String(document.getElementById("startDate").value) ,
+            "end" : String(document.getElementById("endDate").value) ,
+            "priority" : String(document.getElementById("priority").value) ,
+            "description" : String(document.getElementById("w3review").value),
+            "assignee_id" : String(assignee)
         };
 
 
-        let awnser = await postAPI("assignTask" , dict);
+        let awnser = await callAPI("assignTask" , dict);
 
         if(awnser["status"] == "accepted")
         {
