@@ -104,9 +104,11 @@
     </div>
 
     <!--Upload Form-->
-    <div class = "uploadBox">
-        <input id="fileupload" type="file" name="fileupload" /> 
-        <button class = "btn btn-lg btn-primary mb-3"id="upload-button" on:click={async ()=>{await uploadFile()}}> Upload </button>
+    <div>
+        <div class="btn-group" role="group">
+            <input id="fileupload" class="form-control" type="file" name="fileupload"/>
+            <button class = "btn btn-primary"id="upload-button" on:click={async ()=>{await uploadFile()}}>Upload</button>
+        </div>
     </div>
 </div>
 
