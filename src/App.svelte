@@ -13,12 +13,18 @@
 	import {callAPI} from "./global.js";
 
 	
-
+	let nav_active = "home";
+	let componentSelected = "home";
 	let _logged , _update_side_bar_flag;
 	let show_sidebar = false;
 
 	logged.subscribe(value => {
-		_logged = value;console.log(value)
+		_logged = value;
+		if(value == true)
+		{
+			show_sidebar = false;
+			nav_active = 'home';
+		}
 	});
 
 	update_sidebard_flag.subscribe(value => {
@@ -47,7 +53,7 @@
 
 
 
-	let nav_active = "home";
+	
 	function updateSideBar(type)
 	{
 		document.getElementById(nav_active).classList.remove("active");
@@ -74,10 +80,12 @@
 
 			case 'files':
 			show_sidebar = false;
+			componentSelected = "files";
 			break;
 
 			case 'home':
 				show_sidebar = false;
+				componentSelected = "home";
 			break;
 		}
 		if(optionLatestID != -1)
@@ -87,6 +95,8 @@
 
 	function selected(index)
 	{
+		
+		componentSelected = nav_active;
 		if(optionLatestID != -1) document.getElementById(optionLatestID.toString()).style.backgroundColor = "inherit";
 		document.getElementById(index.toString()).style.backgroundColor = "grey";
 		optionLatestID = index;
@@ -270,25 +280,25 @@
 			{/if}
 			
 			<div class="overflow-auto" style="text-align:center;width:calc(100% - {show_sidebar * 280}px);float:right;height:90vh;">
-				{#if nav_active == "chat" && selected_user != -1}
+				{#if componentSelected == "chat"}
 						<Chat userid = {selected_user}></Chat>
 				
-				{:else if nav_active == "home"}
+				{:else if componentSelected == "home"}
 				
 				
 					<Home></Home>
 				
 
-				{:else if nav_active == "tasks" && selected_task != -1}
+				{:else if componentSelected == "tasks"}
 
 						<Tasks taskid = {selected_task}></Tasks>
 
 				
 
-				{:else if nav_active == "workflows" && selected_workflow != -1}
+				{:else if componentSelected == "workflows"}
 						<Workflow workflowid = {selected_workflow}></Workflow>
 
-				{:else if nav_active == "files"}
+				{:else if componentSelected == "files"}
 						<Files></Files>
 
 				{/if}

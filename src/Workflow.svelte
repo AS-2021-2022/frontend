@@ -1,6 +1,6 @@
 <script>
     import { afterUpdate } from "svelte";
-    import {token, email} from "./stores/store.js";
+    import {token, email , update_sidebard_flag} from "./stores/store.js";
     import { get } from "svelte/store";
     import {callAPI , downloadFile, postAPI} from "./global.js";
     export let workflowid;
@@ -58,8 +58,9 @@
 
         if(awnser["status"] == "accepted")
         {
-            createWorkflowFields = [];
-            getWorkflow();
+            //createWorkflowFields = [];
+            //getWorkflow();
+            update_sidebard_flag.set(true);
         }
         else{
             console.log("Rejected");
@@ -114,6 +115,8 @@
             if(awnser["status"] == "accepted")
             {
                 alert("Workflow sucessfully incremented!");
+                //update_sidebard_flag.set(true);
+                getWorkflow(workflowid);
             }
         }
         
@@ -201,7 +204,7 @@
                     <div class="card-body">
                         {file["name"]}
                         <p></p>
-                        <a href="#" class="btn btn-primary"><i class="bi bi-download" on:click={async() => {downloadFile(file)}}></i></a>
+                        <div on:click={async () => {await downloadFile(file)}} class="btn btn-primary"><i class="bi bi-download"></i></div>
                     </div>
                 </div>
                 {/each}
