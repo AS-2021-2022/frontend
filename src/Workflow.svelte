@@ -186,8 +186,8 @@
             {/each}
             </div>
         </div>
-        <div>
-            <div class="btn-group mt-3 ml-5" role="group">
+        <div style="text-align:center">
+            <div class="btn-group mt-3 ml-5" role="group" >
                 <input id="fileupload" class="form-control" type="file" name="fileupload"/>
                 <button type="button" class="btn btn-outline-primary" on:click={async() => await incrementWorkflow()}>Advance</button>
             </div>
