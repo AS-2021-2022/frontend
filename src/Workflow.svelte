@@ -2,7 +2,7 @@
     import { afterUpdate } from "svelte";
     import {token, email} from "./stores/store.js";
     import { get } from "svelte/store";
-    import {callAPI , postAPI} from "./global.js";
+    import {callAPI , downloadFile, postAPI} from "./global.js";
     export let workflowid;
     let cstep = 0;
     var last_id = -1;
@@ -80,7 +80,9 @@
 
     async function incrementWorkflow()
     {
-        cstep++
+        cstep++;
+        console.log("popover" + (cstep));
+        console.log("popover" + cstep);
         if (document.getElementById("popover" + (cstep)).classList.contains("btn-outline-danger")) {
             document.getElementById("popover" + cstep).classList.remove("btn-outline-danger");
             document.getElementById("popover" + cstep).classList.add("btn-outline-success");
@@ -98,9 +100,50 @@
             document.getElementById("popover" + (cstep-1)).classList.add("btn-info");
         }
 
-        var dict = {"token" : get(token), "name": files[0].name  , "id": workflowid};
+        var fileid = await uploadFile();
+        
+        console.log(fileid);
+
+        if(fileid != undefined)
+        {
+            let dict = {"token" : get(token) ,
+                        "file"  : fileid ,
+                        "id"    : workflowid};
+            let awnser = await callAPI("incrementWorkflow" , dict);
+
+            if(awnser["status"] == "accepted")
+            {
+                alert("Workflow sucessfully incremented!");
+            }
+        }
+        
        
-        let answer = await callAPI("incrementWorkflow" , dict);
+        
+    }
+
+    async function uploadFile()
+    {
+        let formData = new FormData();
+        formData.append("file" , fileupload.files[0]);
+        formData.append("token" , get(token));
+        let awnser = await fetch('https://tranquil-brook-75958.herokuapp.com/upload', {
+            method: "POST", 
+            body: formData
+        }); 
+
+        
+
+        awnser = await awnser.json();
+
+        if(awnser["status"] == "accepted")
+        {
+            let fileid = awnser["id"];
+            return fileid;
+        }
+        else{
+            return undefined;
+        }
+
     }
 
     
@@ -145,8 +188,8 @@
         </div>
         <div>
             <div class="btn-group mt-3 ml-5" role="group">
-                <input class="form-control" id="formFileSm" type="file" bind:files>
-                <button type="button" class="btn btn-outline-primary" on:click={() => incrementWorkflow()}>Advance</button>
+                <input id="fileupload" class="form-control" type="file" name="fileupload"/>
+                <button type="button" class="btn btn-outline-primary" on:click={async() => await incrementWorkflow()}>Advance</button>
             </div>
         </div>
             <br><br><br>
@@ -156,9 +199,9 @@
                 <div class="card mr-3 mb-3" style="width: justify-content; display:inline-block">
                     <img src="https://icons.getbootstrap.com/assets/icons/file-earmark-text-fill.svg" class="card-img-top">
                     <div class="card-body">
-                        {file}
+                        {file["name"]}
                         <p></p>
-                        <a href="#" class="btn btn-primary"><i class="bi bi-download"></i></a>
+                        <a href="#" class="btn btn-primary"><i class="bi bi-download" on:click={async() => {downloadFile(file)}}></i></a>
                     </div>
                 </div>
                 {/each}
