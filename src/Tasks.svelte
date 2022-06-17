@@ -104,7 +104,10 @@
                 <div class = "field" style="background-color:rgb(231, 231, 231);">Progress : </div><input type="range" min="0" max="100" value="0"><div></div>
                 <p></p>
                 <div class = "field" style="background-color:rgb(231, 231, 231);">Start : </div><div class = "field">{parameters["start"]}</div>
+                <p></p>
                 <div class = "field" style="background-color:rgb(231, 231, 231);">End : </div><div class = "field">{parameters["end"]}</div>
+                <p></p>
+                <div class = "field" style="background-color:rgb(231, 231, 231);">Description</div>
                 <p></p>
                 <div class = "field description" >{parameters["description"]}</div>
                 
@@ -191,6 +194,7 @@
     .description
     {
         min-height: 200px;
+        min-width: 300px;
     }
 
     .concludeButton
