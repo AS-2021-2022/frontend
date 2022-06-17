@@ -8,19 +8,31 @@
 	import Login from "./Login.svelte";
 	import Workflow from "./Workflow.svelte";
 	import Files from "./Files.svelte";
-	import {logged , role , token , email} from "./stores/store.js";
+	import {logged , role , token , email , update_sidebard_flag} from "./stores/store.js";
 	import { get } from "svelte/store";
 	import {callAPI} from "./global.js";
 
-
 	
 
-	let _logged;
+	let _logged , _update_side_bar_flag;
 	let show_sidebar = false;
 
 	logged.subscribe(value => {
-		_logged = value;
+		_logged = value;console.log(value)
 	});
+
+	update_sidebard_flag.subscribe(value => {
+
+		if(value == true)
+		{
+			updateSideBar(nav_active);
+			update_sidebard_flag.set(false);
+		}
+
+
+	});
+
+
 
 
 

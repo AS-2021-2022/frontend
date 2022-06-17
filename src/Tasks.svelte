@@ -1,7 +1,7 @@
 <script>
     import { afterUpdate } from "svelte";
     import { get } from "svelte/store";
-    import {role , token} from "./stores/store.js";
+    import {role , token , update_sidebard_flag} from "./stores/store.js";
     import {callAPI, postAPI} from "./global.js";
     export let taskid = undefined;
     let state = "";
@@ -54,7 +54,7 @@
 
         if(response["status"] == "accepted")
         {
-            getTask(taskid);
+            update_sidebard_flag.set(true);
         }
     }
 
@@ -78,7 +78,8 @@
 
         if(awnser["status"] == "accepted")
         {
-            console.log("task successfully uploaded");
+            alert("task successfully created");
+            update_sidebard_flag.set(true);
         }
     }
 
