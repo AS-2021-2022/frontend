@@ -143,9 +143,11 @@
             {/each}
             </div>
         </div>
-        <div class="mt-3">
-            <input class="form-control form-control-sm" id="formFileSm" type="file" bind:files>
-            <button type="button" class="btn btn-outline-primary mt-3" on:click={() => incrementWorkflow()}>Advance Workflow</button>
+        <div>
+            <div class="btn-group mt-3 ml-5" role="group">
+                <input class="form-control" id="formFileSm" type="file" bind:files>
+                <button type="button" class="btn btn-outline-primary" on:click={() => incrementWorkflow()}>Advance</button>
+            </div>
         </div>
             <br><br><br>
             <div class="shadow-lg p-3 mb-5 bg-body rounded">

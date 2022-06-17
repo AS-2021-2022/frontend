@@ -107,7 +107,7 @@
     <div>
         <div class="btn-group" role="group">
             <input id="fileupload" class="form-control" type="file" name="fileupload"/>
-            <button class = "btn btn-primary"id="upload-button" on:click={async ()=>{await uploadFile()}}>Upload</button>
+            <button class = "btn btn-outline-primary"id="upload-button" on:click={async ()=>{await uploadFile()}}>Upload</button>
         </div>
     </div>
 </div>
