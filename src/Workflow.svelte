@@ -230,14 +230,14 @@
             {/each}
 
 
-            <div class = "button-box" style="text-align:center; margin-top:5px;border-radius:0px">
-                <button class = "btn btn-lg btn-primary mb-3" style = "width:fit-content" on:click={() => {
+            <div class = "button-box" style="text-align:center; margin-top:15px;border-radius:0px">
+                <button class = "btn btn-lg btn-primary mb-3" style = "width:fit-content;margin-top:30px" on:click={() => {
                     createWorkflowFields.push({"assignee" : "" , "description" : ""});
                     createWorkflowFields = createWorkflowFields;
 
                 }} >new step</button>
 
-                <button  class = "btn btn-lg btn-primary mb-3" style="width:fit-content"on:click={() => {
+                <button  class = "btn btn-lg btn-primary mb-3" style="width:fit-content;margin-top:30px"on:click={() => {
 
                     createWorkflow();
 
@@ -307,7 +307,7 @@
 
     .name-box
     {
-        box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
         background-color:rgb(231, 231, 231);
         width:40%;
         margin: 0 auto;

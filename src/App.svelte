@@ -250,7 +250,7 @@
 						<a class="nav-link " href="#"> <i class="bi bi-envelope"></i>{get(email)}</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" style="cursor:pointer" on:click={() => {logged.set(false);}}>Sign out <i class="bi bi-door-closed"></i></a>
+						<a class="nav-link" style="cursor:pointer" on:click={() => {location.reload();}}>Sign out <i class="bi bi-door-closed"></i></a>
 					</li>
 				</ul>
 			</div>

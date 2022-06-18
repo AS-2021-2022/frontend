@@ -90,7 +90,7 @@ async function login () {
 	 margin-bottom: 80px;
 }
  .form-signin {
-	box-shadow: rgb(91, 109, 128) 0px 20px 30px -10px;
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 	 border-radius:10px;
 	 max-width: 380px;
 	 padding: 15px 35px 45px;
