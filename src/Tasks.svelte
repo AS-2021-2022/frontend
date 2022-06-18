@@ -55,6 +55,8 @@
         if(response["status"] == "accepted")
         {
             update_sidebard_flag.set(true);
+            state = "write";
+            taskid = undefined;
         }
     }
 
@@ -78,8 +80,11 @@
 
         if(awnser["status"] == "accepted")
         {
+            state = "write";
             alert("task successfully created");
             update_sidebard_flag.set(true);
+            taskid = undefined;
+            afterUpdate.apply();
         }
     }
 
@@ -89,27 +94,63 @@
 <main>
 
 
-    <div class = "taskBox">
+    {#if state == "read" && parameters === undefined}
+        <div></div>
+    {:else}
 
-        {#if state === "read"}
+        <div class = "taskBox">
 
-            {#if parameters === undefined}
-                <p>Waiting for server response ...</p>
-            {:else }
+            {#if state === "read"}
+
+                {#if parameters === undefined}
+                    <p>Waiting for server response ...</p>
+                {:else }
+                    <p></p>
+                    
+                    <p></p>
+                    <div class = "field" style="background-color:rgb(231, 231, 231);">Priority : </div><div class = "field">{parameters["priority"]}</div>
+                    <p></p>
+                    <div class = "field" style="background-color:rgb(231, 231, 231);">Progress : </div><input type="range" min="0" max="100" value="0"><div></div>
+                    <p></p>
+                    <div class = "field" style="background-color:rgb(231, 231, 231);">Start : </div><div class = "field">{parameters["start"]}</div>
+                    <p></p>
+                    <div class = "field" style="background-color:rgb(231, 231, 231);">End : </div><div class = "field">{parameters["end"]}</div>
+                    <p></p>
+                    <div class = "field" style="background-color:rgb(231, 231, 231);">Description</div>
+                    <p></p>
+                    <div class = "field description" >{parameters["description"]}</div>
+                    
+                    <p></p>
+                    
+                    <p></p>
+                    
+                    
+                    <button class = "btn btn-lg btn-primary mb-3" on:click={() => {
+
+                        concludeTask();
+
+                    }}>Conclude task!</button>
+                    
+                {/if}
+            {:else}
+                <!--Task creation here-->
                 <p></p>
-                
+                <div class = "field" style="background-color:rgb(231, 231, 231);">Name: </div><input type="text" id="name" name="name"><br>
                 <p></p>
-                <div class = "field" style="background-color:rgb(231, 231, 231);">Priority : </div><div class = "field">{parameters["priority"]}</div>
+                <div class = "field" style="background-color:rgb(231, 231, 231);">Start: </div><input id="startDate" type="datetime-local"><div></div>
+                <div class = "field" style="background-color:rgb(231, 231, 231);">End: </div><input id="endDate" type="datetime-local"><div></div>
                 <p></p>
-                <div class = "field" style="background-color:rgb(231, 231, 231);">Progress : </div><input type="range" min="0" max="100" value="0"><div></div>
+                <div class = "field" style="background-color:rgb(231, 231, 231);">Priority: </div><select name="priority" id="priority">
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select><div></div>
                 <p></p>
-                <div class = "field" style="background-color:rgb(231, 231, 231);">Start : </div><div class = "field">{parameters["start"]}</div>
+                {#if get(role) == "MANAGER"}
+                <div class = "field" style="background-color:rgb(231, 231, 231);">Assignee: </div><input type="text" id="assignee" name="assignee" placeholder="email@nsn.pt">
                 <p></p>
-                <div class = "field" style="background-color:rgb(231, 231, 231);">End : </div><div class = "field">{parameters["end"]}</div>
-                <p></p>
-                <div class = "field" style="background-color:rgb(231, 231, 231);">Description</div>
-                <p></p>
-                <div class = "field description" >{parameters["description"]}</div>
+                {/if}
+                <div class = "field description" style="background-color:inherit"><textarea id="w3review" name="w3review" rows="5" cols="25" placeholder="Description"></textarea></div>
                 
                 <p></p>
                 
@@ -118,48 +159,18 @@
                 
                 <button class = "btn btn-lg btn-primary mb-3" on:click={() => {
 
-                    concludeTask();
+                    sendTask();
 
-                }}>Conclude task!</button>
-                
+                }}>Submit task!</button>
+
+
             {/if}
-        {:else}
-            <!--Task creation here-->
-            <p></p>
-            <div class = "field" style="background-color:rgb(231, 231, 231);">Name: </div><input type="text" id="name" name="name"><br>
-            <p></p>
-            <div class = "field" style="background-color:rgb(231, 231, 231);">Start: </div><input id="startDate" type="datetime-local"><div></div>
-            <div class = "field" style="background-color:rgb(231, 231, 231);">End: </div><input id="endDate" type="datetime-local"><div></div>
-            <p></p>
-            <div class = "field" style="background-color:rgb(231, 231, 231);">Priority: </div><select name="priority" id="priority">
-                <option value="low">Low</option>
-                <option value="medium">Medium</option>
-                <option value="high">High</option>
-              </select><div></div>
-            <p></p>
-            {#if get(role) == "MANAGER"}
-            <div class = "field" style="background-color:rgb(231, 231, 231);">Assignee: </div><input type="text" id="assignee" name="assignee" placeholder="email@nsn.pt">
-            <p></p>
-            {/if}
-            <div class = "field description" style="background-color:inherit"><textarea id="w3review" name="w3review" rows="5" cols="25" placeholder="Description"></textarea></div>
-            
-            <p></p>
-            
-            <p></p>
-            
-            
-            <button class = "btn btn-lg btn-primary mb-3" on:click={() => {
 
-                sendTask();
 
-            }}>Submit task!</button>
 
+        </div>
 
         {/if}
-
-
-
-    </div>
 
 </main>
 
