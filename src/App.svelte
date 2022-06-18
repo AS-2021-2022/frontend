@@ -98,7 +98,7 @@
 		
 		componentSelected = nav_active;
 		if(optionLatestID != -1) document.getElementById(optionLatestID.toString()).style.backgroundColor = "inherit";
-		document.getElementById(index.toString()).style.backgroundColor = "grey";
+		document.getElementById(index.toString()).style.backgroundColor = "#D2D2D2";
 		optionLatestID = index;
 		if(index != 1000)
 		{
@@ -340,7 +340,7 @@
 
 	}
 	.sidebar-content:hover{
-		background-color: rgb(187, 187, 187);
+		background-color: rgb(210, 210, 210);
 		cursor:pointer;
 	}
 
