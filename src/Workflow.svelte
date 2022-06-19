@@ -201,7 +201,10 @@
         </div>
         <div style="text-align:center">
             <div class="btn-group mt-3 ml-5" role="group" >
-                <input id="fileupload" class="form-control" type="file" name="fileupload"/>
+                <div class="upload-btn-wrapper">
+                    <button class="btn btn-outline-primary">Choose a file</button>
+                    <input id="fileupload" class="form-control" type="file" name="fileupload"/>
+                </div>
                 <button type="button" class="btn btn-outline-primary" on:click={async() => await incrementWorkflow()}>Advance</button>
             </div>
         </div>
@@ -262,6 +265,20 @@
 
 
 <style>
+
+    .upload-btn-wrapper input[type=file] {
+        font-size: 100px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+    }
+
+    .upload-btn-wrapper {
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+    }
 
     .field
     {
