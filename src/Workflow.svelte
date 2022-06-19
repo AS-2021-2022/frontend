@@ -86,14 +86,15 @@
     async function incrementWorkflow()
     {
         cstep++;
+
+        console.log(document.getElementById("popover0"))
         
-        if(cstep != 1)
-        {
-            if (document.getElementById("popover" + (cstep)).classList.contains("btn-outline-danger")) {
+            if (cstep > 1 && document.getElementById("popover" + String(cstep)).classList.contains("btn-outline-danger"))
+            {
                 document.getElementById("popover" + cstep).classList.remove("btn-outline-danger");
                 document.getElementById("popover" + cstep).classList.add("btn-outline-success");
             }
-            if (document.getElementById("popover" + (cstep)).classList.contains("btn-danger")) {
+            if (cstep > 1 && document.getElementById("popover" + (cstep)).classList.contains("btn-danger")) {
                 document.getElementById("popover" + cstep).classList.remove("btn-danger");
                 document.getElementById("popover" + cstep).classList.add("btn-success");
             }
@@ -105,8 +106,6 @@
                 document.getElementById("popover" + (cstep-1)).classList.remove("btn-success");
                 document.getElementById("popover" + (cstep-1)).classList.add("btn-info");
             }
-        }
-
         var fileid = await uploadFile();
         
 
