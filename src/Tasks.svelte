@@ -54,6 +54,7 @@
 
         if(response["status"] == "accepted")
         {
+            alert("Task successfully completed!")
             update_sidebard_flag.set(true);
             state = "write";
             taskid = undefined;
