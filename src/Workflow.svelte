@@ -87,7 +87,6 @@
     {
         cstep++;
 
-        console.log(document.getElementById("popover0"))
         
             if (cstep > 1 && document.getElementById("popover" + String(cstep)).classList.contains("btn-outline-danger"))
             {
