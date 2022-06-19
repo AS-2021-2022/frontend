@@ -105,7 +105,7 @@
 
             if(awnser["status"] == "accepted")
             {
-                if (cstep > 1 && document.getElementById("popover" + String(cstep)).classList.contains("btn-outline-danger"))
+                /*if (cstep > 1 && document.getElementById("popover" + String(cstep)).classList.contains("btn-outline-danger"))
                 {
                     document.getElementById("popover" + cstep).classList.remove("btn-outline-danger");
                     document.getElementById("popover" + cstep).classList.add("btn-outline-success");
@@ -122,6 +122,7 @@
                     document.getElementById("popover" + (cstep-1)).classList.remove("btn-success");
                     document.getElementById("popover" + (cstep-1)).classList.add("btn-info");
                 }
+                */
                 alert("Workflow sucessfully incremented!");
                 update_sidebard_flag.set(true);
                 //getWorkflow(workflowid);

@@ -260,7 +260,7 @@
 
 		<div>
 			{#if show_sidebar == true}
-				<div style="width:280px;Text-align:left;float:left;background-color:gainsboro;">
+				<div style="width:280px;Text-align:left;float:left;background-color:gainsboro;overflow:auto">
 					<div class="d-flex flex-column flex-shrink-0 p-3" style="width: 280px;height:92.5vh;">
 						{#if nav_active == "tasks"}
 							<div id = "1000" class = "sidebar-content" on:click={() => {selected(1000);selected_task = undefined}}>Create Task + </div>

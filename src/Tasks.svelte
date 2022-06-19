@@ -134,7 +134,7 @@
                     <p></p>
                     
                     
-                    <button class = "btn btn-lg btn-primary mb-3" on:click={() => {
+                    <button id="bconclude" class = "btn btn-lg btn-primary mb-3" on:click={() => {
 
                         concludeTask();
 
@@ -166,7 +166,7 @@
                 <p></p>
                 
                 
-                <button class = "btn btn-lg btn-primary mb-3" on:click={() => {
+                <button id="bsubmit" class = "btn btn-lg btn-primary mb-3" on:click={() => {
 
                     sendTask();
 
