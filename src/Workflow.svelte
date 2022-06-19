@@ -62,8 +62,12 @@
             //getWorkflow();
             update_sidebard_flag.set(true);
         }
-        else{
-            console.log("Rejected");
+        if(awnser["status"] == "rejected")
+        {
+            if(awnser["info"] != undefined) alert("Unable to submit workflow. Server response: " + awnser["info"]);
+            else{
+                alert("Unable to submit workflow");
+            }
         }
     }
 
@@ -118,6 +122,7 @@
                 //update_sidebard_flag.set(true);
                 getWorkflow(workflowid);
             }
+            
         }
         
        

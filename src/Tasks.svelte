@@ -86,6 +86,14 @@
             taskid = undefined;
             afterUpdate.apply();
         }
+
+        if(awnser["status"] == "rejected")
+        {
+            if(awnser["info"] != undefined) alert("Unable to submit task. Server response: " + awnser["info"]);
+            else{
+                alert("Unable to submit task")
+            }
+        }
     }
 
 </script>
