@@ -1592,3 +1592,11 @@ JavaScript error: , line 0: SyntaxError: JSON.parse: unexpected character at lin
 JavaScript error: http://localhost:8080/build/bundle.js, line 110: Error: Function called outside component initialization
 JavaScript error: http://localhost:8080/build/bundle.js, line 110: Error: Function called outside component initialization
 JavaScript error: http://localhost:8080/build/bundle.js, line 110: Error: Function called outside component initialization
+JavaScript error: http://localhost:8080/build/bundle.js, line 4816: SyntaxError: missing { before function body
+Missing chrome or resource URL: resource://gre/modules/UpdateListener.jsm
+console.error: "Error during quit-application-granted: [Exception... \"File error: Not found\"  nsresult: \"0x80520012 (NS_ERROR_FILE_NOT_FOUND)\"  location: \"JS frame :: resource:///modules/BrowserGlue.jsm :: _onQuitApplicationGranted/tasks< :: line 1969\"  data: no]"
+1655650438034	Marionette	INFO	Stopped listening on port 38323
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.
+
+###!!! [Parent][PImageBridgeParent] Error: RunMessage(msgname=PImageBridge::Msg_WillClose) Channel closing: too late to send/recv, messages will be lost
+

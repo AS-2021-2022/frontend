@@ -1,4 +1,6 @@
 /node_modules/
 /public/build/
-
+/selenium/tests/geckodriver.log
+/selenium/tests/__pycache__
+/selenium/tests/.pytest_cache
 .DS_Store
