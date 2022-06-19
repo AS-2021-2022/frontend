@@ -86,28 +86,29 @@
     async function incrementWorkflow()
     {
         cstep++;
-        console.log("popover" + (cstep));
-        console.log("popover" + cstep);
-        if (document.getElementById("popover" + (cstep)).classList.contains("btn-outline-danger")) {
-            document.getElementById("popover" + cstep).classList.remove("btn-outline-danger");
-            document.getElementById("popover" + cstep).classList.add("btn-outline-success");
-        }
-        if (document.getElementById("popover" + (cstep)).classList.contains("btn-danger")) {
-            document.getElementById("popover" + cstep).classList.remove("btn-danger");
-            document.getElementById("popover" + cstep).classList.add("btn-success");
-        }
-        if (document.getElementById("popover" + (cstep-1)).classList.contains("btn-outline-success")) {
-            document.getElementById("popover" + (cstep-1)).classList.remove("btn-outline-success");
-            document.getElementById("popover" + (cstep-1)).classList.add("btn-outline-info");
-        }
-        if (document.getElementById("popover" + (cstep-1)).classList.contains("btn-success")) {
-            document.getElementById("popover" + (cstep-1)).classList.remove("btn-success");
-            document.getElementById("popover" + (cstep-1)).classList.add("btn-info");
+        
+        if(cstep != 1)
+        {
+            if (document.getElementById("popover" + (cstep)).classList.contains("btn-outline-danger")) {
+                document.getElementById("popover" + cstep).classList.remove("btn-outline-danger");
+                document.getElementById("popover" + cstep).classList.add("btn-outline-success");
+            }
+            if (document.getElementById("popover" + (cstep)).classList.contains("btn-danger")) {
+                document.getElementById("popover" + cstep).classList.remove("btn-danger");
+                document.getElementById("popover" + cstep).classList.add("btn-success");
+            }
+            if (document.getElementById("popover" + (cstep-1)).classList.contains("btn-outline-success")) {
+                document.getElementById("popover" + (cstep-1)).classList.remove("btn-outline-success");
+                document.getElementById("popover" + (cstep-1)).classList.add("btn-outline-info");
+            }
+            if (document.getElementById("popover" + (cstep-1)).classList.contains("btn-success")) {
+                document.getElementById("popover" + (cstep-1)).classList.remove("btn-success");
+                document.getElementById("popover" + (cstep-1)).classList.add("btn-info");
+            }
         }
 
         var fileid = await uploadFile();
         
-        console.log(fileid);
 
         if(fileid != undefined)
         {
@@ -119,7 +120,7 @@
             if(awnser["status"] == "accepted")
             {
                 alert("Workflow sucessfully incremented!");
-                //update_sidebard_flag.set(true);
+                update_sidebard_flag.set(true);
                 getWorkflow(workflowid);
             }
             
@@ -236,13 +237,13 @@
 
 
             <div class = "button-box" style="text-align:center; margin-top:15px;border-radius:0px">
-                <button class = "btn btn-lg btn-primary mb-3" style = "width:fit-content;margin-top:30px" on:click={() => {
+                <button id="bnstep" class = "btn btn-lg btn-primary mb-3" style = "width:fit-content;margin-top:30px" on:click={() => {
                     createWorkflowFields.push({"assignee" : "" , "description" : ""});
                     createWorkflowFields = createWorkflowFields;
 
                 }} >new step</button>
 
-                <button  class = "btn btn-lg btn-primary mb-3" style="width:fit-content;margin-top:30px"on:click={() => {
+                <button id="bsubmit" class = "btn btn-lg btn-primary mb-3" style="width:fit-content;margin-top:30px"on:click={() => {
 
                     createWorkflow();
 
