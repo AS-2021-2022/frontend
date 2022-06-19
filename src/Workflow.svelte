@@ -32,6 +32,7 @@
     
     if(last_id != workflowid)
     {
+        createWorkflowFields = [];
         last_id = workflowid;
         if(workflowid == undefined) state = "write";
         else{
@@ -73,13 +74,15 @@
 
     async function getWorkflow()
     {
-        console.log(workflowid);
         var dict = {"token" : get(token), "id": workflowid};
 
         let answer = await callAPI("getWorkflow" , dict);
 
         if (answer["status"] == "accepted") {
             apiResponse = answer;
+        }
+        else{
+            state = "write";
         }
     }
 
@@ -88,23 +91,8 @@
         cstep++;
 
         
-            if (cstep > 1 && document.getElementById("popover" + String(cstep)).classList.contains("btn-outline-danger"))
-            {
-                document.getElementById("popover" + cstep).classList.remove("btn-outline-danger");
-                document.getElementById("popover" + cstep).classList.add("btn-outline-success");
-            }
-            if (cstep > 1 && document.getElementById("popover" + (cstep)).classList.contains("btn-danger")) {
-                document.getElementById("popover" + cstep).classList.remove("btn-danger");
-                document.getElementById("popover" + cstep).classList.add("btn-success");
-            }
-            if (document.getElementById("popover" + (cstep-1)).classList.contains("btn-outline-success")) {
-                document.getElementById("popover" + (cstep-1)).classList.remove("btn-outline-success");
-                document.getElementById("popover" + (cstep-1)).classList.add("btn-outline-info");
-            }
-            if (document.getElementById("popover" + (cstep-1)).classList.contains("btn-success")) {
-                document.getElementById("popover" + (cstep-1)).classList.remove("btn-success");
-                document.getElementById("popover" + (cstep-1)).classList.add("btn-info");
-            }
+            
+            
         var fileid = await uploadFile();
         
 
@@ -117,9 +105,27 @@
 
             if(awnser["status"] == "accepted")
             {
+                if (cstep > 1 && document.getElementById("popover" + String(cstep)).classList.contains("btn-outline-danger"))
+                {
+                    document.getElementById("popover" + cstep).classList.remove("btn-outline-danger");
+                    document.getElementById("popover" + cstep).classList.add("btn-outline-success");
+                }
+                if (cstep > 1 && document.getElementById("popover" + (cstep)).classList.contains("btn-danger")) {
+                    document.getElementById("popover" + cstep).classList.remove("btn-danger");
+                    document.getElementById("popover" + cstep).classList.add("btn-success");
+                }
+                if (document.getElementById("popover" + (cstep-1)).classList.contains("btn-outline-success")) {
+                    document.getElementById("popover" + (cstep-1)).classList.remove("btn-outline-success");
+                    document.getElementById("popover" + (cstep-1)).classList.add("btn-outline-info");
+                }
+                if (document.getElementById("popover" + (cstep-1)).classList.contains("btn-success")) {
+                    document.getElementById("popover" + (cstep-1)).classList.remove("btn-success");
+                    document.getElementById("popover" + (cstep-1)).classList.add("btn-info");
+                }
                 alert("Workflow sucessfully incremented!");
                 update_sidebard_flag.set(true);
-                getWorkflow(workflowid);
+                //getWorkflow(workflowid);
+                afterUpdate.apply();
             }
             
         }
