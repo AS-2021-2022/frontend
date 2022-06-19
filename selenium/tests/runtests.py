@@ -1,3 +1,5 @@
+from pydoc import describe
+from tracemalloc import start
 from selenium import webdriver
 import pytest
 import time
@@ -113,8 +115,83 @@ def test_workflow_creation_invalid():
 
     try:
         alert = WebDriverWait(driver , 5).until(EC.alert_is_present())
-        assert alert.text[:6] == "Unable" 
+        assert alert.text[0:6] == "Unable" 
     except:
-        assert False , "Error sumbitting wrong "
+        assert False , "Error sumbitting workflow"
+
+
+def test_task_creation_valid():
+    element = driver.find_element(By.ID , "tasks")
+    element.click()
+
+    createTask = None
+
+    try:
+        createTask = WebDriverWait(driver , 1).until(
+            lambda d: d.find_element(By.ID , "1000"))
+    except:
+        assert False , "Error acessing 'create task' tab"
 
     
+
+    name = driver.find_element(By.ID , "name")
+    startDate = driver.find_element(By.ID , "startDate")
+    endDate = driver.find_element(By.ID , "endDate")
+    priority = driver.find_element(By.ID , "priority")
+    assignee = driver.find_element(By.ID , "assignee")
+    description = driver.find_element(By.ID , "w3review")
+    submit = driver.find_element(By.CLASS_NAME , "btn btn-lg btn-primary mb-3")
+    
+    
+    name.send_keys("valid task creation")
+    startDate.send_keys("6/19/2022, 01:59 PM")
+    endDate.send_keys("6/19/2022, 3:59 PM")
+    priority.send_keys("Medium")
+    assignee.send_keys("user3@nsn.pt")
+    description.send_keys("Description test")
+    submit.click()
+
+    try:
+        alert = WebDriverWait(driver , 5).until(EC.alert_is_present())
+        assert alert.text == "task successfully created"
+    except:
+        assert False , "Expected alert saying 'task successfully created' from web brownser!"
+
+def test_task_creation_invalid():
+    element = driver.find_element(By.ID , "tasks")
+    element.click()
+
+    createTask = None
+
+    try:
+        createTask = WebDriverWait(driver , 1).until(
+            lambda d: d.find_element(By.ID , "1000"))
+    except:
+        assert False , "Error acessing 'create task' tab"
+
+    driver.find_element(By.CLASS_NAME , "btn btn-lg btn-primary mb-3").click()
+
+    try:
+        alert = WebDriverWait(driver , 5).until(EC.alert_is_present())
+        assert alert.text[0:6] == "Unable" 
+    except:
+        assert False , "Expected 'alert' from web brownser"
+
+    
+def test_task_completion():
+    
+    task = driver.find_element(By.ID , "0")
+    assert task.text == "valid task creation"
+    task.click()
+
+    conclude = driver.find_element(By.CLASS_NAME , "btn btn-lg btn-primary mb-3")
+    assert conclude.text == "Conclude task!"
+
+    conclude.click()
+
+    try:
+        alert = WebDriverWait(driver , 5).until(EC.alert_is_present())
+        assert alert.text == "Task successfully completed!" 
+    except:
+        assert False , "Expected 'alert' from web brownser"
+

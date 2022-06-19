@@ -1095,3 +1095,38 @@ console.error: "Error during quit-application-granted: [Exception... \"File erro
 ###!!! [Parent][PImageBridgeParent] Error: RunMessage(msgname=PImageBridge::Msg_WillClose) Channel closing: too late to send/recv, messages will be lost
 
 JavaScript error: http://localhost:8080/build/bundle.js, line 4837: SyntaxError: expected expression, got end of script
+Gdk-Message: 12:14:48.832: firefox: Fatal IO error 11 (Resource temporarily unavailable) on X server :1.
+
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1655643926644	geckodriver	INFO	Listening on 127.0.0.1:47051
+1655643927139	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "58277" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileE9ZSMQ"
+1655643928330	Marionette	INFO	Marionette enabled
+WebDriver BiDi listening on ws://localhost:58277
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileE9ZSMQ/search.json.mozlz4", (void 0)))
+Missing chrome or resource URL: resource://gre/modules/UpdateListener.jsm
+1655643929882	Marionette	INFO	Listening on port 37205
+Read port: 37205
+1655643929973	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://localhost:58277/devtools/browser/5c29e570-2665-445d-80fb-4062fcf80c44
+Missing chrome or resource URL: resource://gre/modules/UpdateListener.jsm
+console.error: "Error during quit-application-granted: [Exception... \"File error: Not found\"  nsresult: \"0x80520012 (NS_ERROR_FILE_NOT_FOUND)\"  location: \"JS frame :: resource:///modules/BrowserGlue.jsm :: _onQuitApplicationGranted/tasks< :: line 1969\"  data: no]"
+1655644312851	Marionette	INFO	Stopped listening on port 37205
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.
+
+###!!! [Parent][PImageBridgeParent] Error: RunMessage(msgname=PImageBridge::Msg_WillClose) Channel closing: too late to send/recv, messages will be lost
+
+1655644608925	geckodriver	INFO	Listening on 127.0.0.1:38957
+1655644608928	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "40399" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilelSwJze"
+1655644609599	Marionette	INFO	Marionette enabled
+WebDriver BiDi listening on ws://localhost:40399
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilelSwJze/search.json.mozlz4", (void 0)))
+Missing chrome or resource URL: resource://gre/modules/UpdateListener.jsm
+1655644610827	Marionette	INFO	Listening on port 46157
+Read port: 46157
+1655644610845	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://localhost:40399/devtools/browser/c327f5ac-d384-42cf-8e89-37ef39784b91
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
