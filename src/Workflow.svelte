@@ -34,10 +34,10 @@
     {
         createWorkflowFields = [];
         last_id = workflowid;
+        await getWorkflow();
         if(workflowid == undefined) state = "write";
         else{
             state = "read";
-            await getWorkflow();
         }
     }
 
